@@ -79,9 +79,23 @@ Optimizacija rojem čestica (eng. Particle Swarm Optimization - PSO) je stohasti
 
 
 \section{Osnovni algoritam za optimizaciju rojem čestica}
-Algoritam za optimizaciju rojem čestica sadrži jedinke (čestice) koje se se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje. 
+Algoritam za optimizaciju rojem čestica sadrži jedinke (čestice) koje se se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
 Neka je \[x_i(t)\] pozicija čestice i u prostoru pretrage u trenutku t. Pozicija čestice se menja dodavanjem brzine, \[v_i(t)\] na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
+Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu do sada najbolju poziciju, kao i do sada najbolju poziciju čitavog roja. Znanje čestice stečeno sopstvenim iskustvom predstavlja kognitivnu komponentu algoritma, i proporcionalno je udaljenosti čestice od svoje najbolje pozicije do sada. Socijalna komponenta algoritma predstavlja informacije koje su stečene od suseda posmatrane čestice. Prvobitno su razvijene dve varijante PSO algoritama koje se razlikuju u odnosu na broj susednih jedinki, a to su gbest PSO i lbest PSO.
 
+
+\subsection{Globalno najbolji PSO}
+\label{subsec:podnaslov1}
+
+U slučaju globalno najboljeg PSO algoritma, susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. U topologiji zvezde socijalna komponenta brzine čestice predstavlja informaciju dobijenu od svih čestica u roju. 
+Brzina čestice i se računa kao:
+\[v_{ij}(t + 1) = v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_j(t) - x_{ij}(t)] \]
+
+\subsection{Lokalno najbolji PSO}
+\label{subsec:podnaslov2}
+
+Lokalno najbolji PSO koristi topologiju prstena, gde svaka čestica i manji broj suseda. Socijalna komponenta predstavlja informaciju koju razmenjuju susedi čestice. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. Brzina se računa kao:
+\[v_{ij}(t+1) = v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
 
 \section{Engleski termini i citiranje}	
 \label{sec:termini_i_citiranje}
