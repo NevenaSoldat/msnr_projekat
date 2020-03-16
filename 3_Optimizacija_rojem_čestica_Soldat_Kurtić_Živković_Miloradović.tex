@@ -14,6 +14,7 @@
 \hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
 
 \usepackage{listings}
+\usepackage{mathtools}
 
 %\newtheorem{primer}{Пример}[section] %ćirilični primer
 \newtheorem{primer}{Primer}[section]
@@ -56,7 +57,7 @@
 
 \title{Optimizacija rojem čestica\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
 
-\author{Nevena Soldat, Milena Kurtić,Tijana Živković , Ana Miloradović \\
+\author{Nevena Soldat, Milena Kurtić, Tijana Živković , Ana Miloradović\protect\\
 nevenasoldat@gmail.com, mimikurtic67@gmail.com , tijanazivkovic6@gmail.com, ana.miloradovic7@gmail.com}
 
 %\date{9.~april 2015.}
@@ -80,7 +81,7 @@ Optimizacija rojem čestica (eng. Particle Swarm Optimization - PSO) je stohasti
 
 \section{Osnovni algoritam za optimizaciju rojem čestica}
 Algoritam za optimizaciju rojem čestica sadrži jedinke (čestice) koje se se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
-Neka je \[x_i(t)\] pozicija čestice i u prostoru pretrage u trenutku t. Pozicija čestice se menja dodavanjem brzine, \[v_i(t)\] na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
+Neka je $x_i(t)$ pozicija čestice \textit{i} u prostoru pretrage u trenutku \textit{t}. Pozicija čestice se menja dodavanjem brzine, $v_i(t)$ na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
 Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu do sada najbolju poziciju, kao i do sada najbolju poziciju čitavog roja. Znanje čestice stečeno sopstvenim iskustvom predstavlja kognitivnu komponentu algoritma, i proporcionalno je udaljenosti čestice od svoje najbolje pozicije do sada. Socijalna komponenta algoritma predstavlja informacije koje su stečene od suseda posmatrane čestice. Prvobitno su razvijene dve varijante PSO algoritama koje se razlikuju u odnosu na broj susednih jedinki, a to su gbest PSO i lbest PSO.
 
 
@@ -90,6 +91,18 @@ Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu 
 U slučaju globalno najboljeg PSO algoritma, susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. U topologiji zvezde socijalna komponenta brzine čestice predstavlja informaciju dobijenu od svih čestica u roju. 
 Brzina čestice i se računa kao:
 \[v_{ij}(t + 1) = v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_j(t) - x_{ij}(t)] \]
+
+gde je $v_{ij}(t)$ brzina čestice \textit{i} u dimenziji \textit{j} = 1,...,$n_x$ u trenutku \textit{t}, $x_{ij}(t)$ je pozicija čestice \textit{i} u dimenziji \textit{j} u trenutku \textit{t}, $c_1$ i $c_2$ su konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine, i $r_{1j}(t)$, $r_{2j}(t)$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1].
+Lokalno najbolje rešenje, $\textbf{y}_i$ je najbolja pozicija u kojoj je bila čestica \textit{i} od početnog trenutka \textit{t}. U trenutku \textit{t+1}, lokalno najbolje rešenje se računa na sledeći način:
+\begin{equation}
+    y_i(t+1) = \begin{cases}
+                
+            y_i(t)  & f(x_i(t+1)) \geq f(y_i(t)) \\
+            x_i(t+1)  & f(x_i(t+1)) < f(y_i(t))
+           
+             \end{cases}
+\end{equation}
+
 
 \subsection{Lokalno najbolji PSO}
 \label{subsec:podnaslov2}
