@@ -103,7 +103,19 @@ Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu 
 gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], dok su parametri $c_1$ i $c_2$ konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. 
 
 \subsection{Komponente brzine PSO algoritma}
+Brzina \textit{i}-te čestice ima tri komponente:\\
+\begin{itemize}
+    \item \textbf{Prethodna vrednost brzine}, $\textbf{v}_i(t)$, koja čuva prethodni pravac kretanja čestice. Može se reći da je ona moment koji sprečava česticu da drastično promeni pravac. 
+    \item \textbf{Kognitivna komponenta}, $c_1\textbf{r}_1(\textbf{p}_i - \textbf{x}_i)$, koja meri rezultat čestice \textit{i} u ondosu na prethodne. Može se opisati kao pamćenje najbolje pozicije u kojoj se čestica do sada našla. Efekat ove komponente je tendencija čestica da se vrate na pronadjene najbolje pozicije. Kennedy i Eberhart su nazivali koginitivnu komponentu \say{nostalgija} čestice.
+    \item \textbf{Socijalna komponenta}, $c_2\textbf{r}_2(\textbf{p}_g - \textbf{x}_i)$, koja meri rezultat čestice \textit{i} u odnosu na sve susedne čestice. Efekat ove komponente je tendencija čestice da se kreće ka najboljoj poziciji pronađenoj od strane susednih čestica.
+\end{itemize}
 
+\begin{figure}[htp]
+    \centering
+    \includegraphics{velocity.png}
+    \caption{Prikaz promene brzine}
+    \label{fig:velocity}
+\end{figure}
 
 
 \subsection{Globalno najbolji PSO}
@@ -155,4 +167,5 @@ Lokalno najbolji PSO koristi topologiju prstena, gde svaka čestica i manji broj
 \[v_{ij}(t+1) = v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
 
 
+\section{Topologije uticaja}
 \end{document}
