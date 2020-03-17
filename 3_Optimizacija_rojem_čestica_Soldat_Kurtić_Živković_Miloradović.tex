@@ -6,7 +6,7 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
-
+\usepackage{amsfonts}
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
@@ -59,7 +59,7 @@
 
 \title{Optimizacija rojem čestica\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
 
-\author{Nevena Soldat, Milena Kurtić, Tijana Živković , Ana Miloradović\protect\\
+\author{Nevena Soldat, Milena Kurtić, Tijana Živković, Ana Miloradović\protect\\
 \small{\texttt{nevenasoldat@gmail.com,}  \texttt{mimikurtic67@gmail.com,}} \\ \small{\texttt{tijanazivkovic6@gmail.com,} \texttt{ana.miloradovic7@gmail.com}}}
 
 %\date{9.~april 2015.}
@@ -107,6 +107,29 @@ Lokalno najbolje rešenje, $\textbf{y}_i$ je najbolja pozicija u kojoj je bila �
            
              \end{cases}
 \end{equation}
+gde je $f:\mathbb{R}^{n_x} \to \mathbb{R}$ fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja. Globalno najbolje rešenje, odnosno pozicija, u trenutku t, je definisano kao
+\[\hat{y}(t) \in {y_0(t),...,y_{n_s}|f(\hat{y}(t)) = min{f(y_0(t)),...,f(y_{n_s}(t))}} \]
+gde je $n_s$ ukupan broj čestica. Bitno je napomenutni da je $\hat{y}$ najbolje rešenje koje je pronađeno od strane bilo koje čestice do sada - obično se računa kao najbolje lokalno najbolje rešenje. Globalno najbolje rešenje se takođe može izabrati i od čestica posmatranog roja, u kom slučaju je \[\hat{y}(t) = min{f(x_0(t)),...,f(x_{n_s}(t))}\]
+Globalno najbolji PSO je prikazan u narednom algoritmu \\ \\
+\textbf{Algoritam} \textit{gbest} PSO: \\ 
+Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;\\
+\textbf{ponavljaj} \\ 
+\hspace*{5mm}\textbf{za} \textit{svaku česticu} $\textit{i} = 1,...,n_s$ \textbf{uradi} \\
+\hspace*{5mm} // postavi lokalno najbolju poziciju \\
+\hspace*{10mm} \textbf{ako} $f(x_i) < f(y_i)$ \textbf{onda} \\
+\hspace*{15mm} $y_i = x_i;$ \\
+\hspace*{10mm} \textbf{kraj} \\
+\hspace*{5mm}//postavi globalno najbolju poziciju \\\
+\hspace*{10mm}\textbf{ako} $f(y_i) < f(\hat{y})$ \textbf{onda} \\
+\hspace*{15mm} $\hat{y} = y_i;$ \\
+\hspace*{10mm} \textbf{kraj} \\
+\hspace*{5mm} \textbf{kraj} \\
+\hspace*{5mm} \textbf{za} \textit{svaku česticu} $i = 1,...,n_s$ \textbf{uradi}\\
+\hspace*{10mm} ažuriraj brzinu; \\
+\hspace*{10mm} ažiriraj poziciju; \\
+\hspace*{5mm} \textbf{kraj} \\
+\textbf{dok} nije ispunjen zahtev za zaustavljanje;
+
 
 
 \subsection{Lokalno najbolji PSO}
