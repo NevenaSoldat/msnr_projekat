@@ -167,5 +167,72 @@ Lokalno najbolji PSO koristi topologiju prstena, gde svaka čestica i manji broj
 \[v_{ij}(t+1) = v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
 
 
+\section{Osnovne varijacije}
+Postoji nekoliko modifikacija osnovnog PSO algoritma, a one su razvijane da bi poboljšale brzinu konvergencije i kvalitet rešenja koji ovaj algoritam nalazi.
+
+\subsection{Smanjenje brzina}
+Za efikasnost i tačnost algoritma optimizacije važno je napraviti balans između eksploracije i eksploatacije. 
+$Eksploracija$ se odnosi na sposobnost algoritma pretrage da istražuje različite regione prostora pretrage da bi se pronašao dobar optimum, dok je $eksploatacija$ sposobnost  da se pretraga koncentriše oko regije koje garantuje nalaženje rešenja da bi se poboljšao kandidat rešenja. Ovo su konktradiktorni ciljevi koje treba dovesti u balans radi dobijanja dobrog optimizacionog algoritma.
+
+Ažuriranja brzina u gorenavedenoj jednačini, predstavljena trima uslovima, doprinose veličini koraka čestice. U ranijim, osnovnim PSO algoritmima je primećeno da brzina brzo dostiže velike vrednosti, specijalno kod čestica koje su daleko od najboljih u okruženju i najboljih sopstvenih pozicija. Tim čestim ažuriranjima položaja jedinke polako napuštaju granice prostora pretrage, tj. divergiraju, pa se te brzine smanjuju da bi čestice ostale u okviru granica. Ako brzina prelazi maksimalnu brzinu, postavlja se na taj maksimalnu brzinu, inace se brzina na standardni način ažurira.
+
+\begin{equation}
+    v_{ij}(t+1) = \begin{cases}
+                
+            v'_{ij}(t+1)  & if  v'_{ij}(t+1) < V_{max,j}\\
+            V_{max,j}  & if  v'_{ij}(t+1) \geq V_{max,j}
+           
+             \end{cases}
+\end{equation}
+
+Velike vrednosti maksimalne brzine olakšavaju istraživanje na globalnom nivou, dok manje vrednosti podstiču lokalnu eksploataciju. I premale i prevelike vrednosti maksimalne brzine imaju svoje mane. Dok veoma male vrednosti mogu da povećaju broj vremenskih koraka do nalaženja optimalne vrednosti, tako veoma velike vrednosti brzina mogu dovesti da se sasvim propusti dobar region, ali se uz to čestice ipak brže kreću. 
+Tako osim prblema balansa eksploracije i eksploatacije treba pronaći i dobar balans za svaki $V_{max}$, da ne bude ni premala, a ni prevelika vrednost. Obično se biraju da budu deo domena svake dimenzije prostora pretrage. 
+
+\[V_{max,j} = \delta(x_{max,j} − x_{min,j} ),\]
+gde su $x_{max,j}$ i $x_{min,j}$ maksimualne i minimalne vrednosti domena $x$ u dimenziji $j$, a $\delta \in (0, 1]$.
+Vrednosti $\delta$ zavisi od samog problema.
+
+Postoje i mane, promene brzine ne menjaju samo veličinu koraka, već i pravac u kome će se čestica kretati, to može biti prednost-omogućava bolju eksploraciju, ali isto tako može da dovede do toga da optimum uopšte ne bude pronađen.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.3]{slika3_1.png}
+    \caption{Efekat smanjenja brzine}
+    \label{fig:velocity}
+\end{figure}
+
+Postoji još i problem kada su sve vrednosti jednake $V_{max}$, a ako se ne preduzme ništa povodnom toga, čestice se zaglavljuju unutar ograničene oblasti $[x_i(t)-V_{max} , x_i(t) + V_{max} ]$.  Ovaj problem se može rešiti uvođenjem inercijske težine ili smanjivanjem  $V_{max}$ vrednosti vremenom, tako što pretraga počine s velikim vrednostima i tako se pretražuje prostor, a zatim se postepeno smanjuje. Tako se ograničava globalna pretraga i osvrće se na lokalnu u već kasnim fazama pretraživanja. $V_{max}$ se može menjati kada nema napretka u globalno najboljoj poziciji u toku određenog broja uzastopnih iteracija, ili se može eksponencijalno smanjivati.
+
+\subsection{Inercijalna težina}
+Ovaj pristup balansa izmedju eksploracije i eksploatacije nastao je da bi se eliminisalo koriščenje smanjenje brzina. Težina $w$  kontroliše koliko će prethodni pravac leta uticati na novu brzinu. Sada jednačina izgleda ovako:
+
+\[v_{ij}(t+1) = wv_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
+
+Dolazi do promene jednačine ažuriranja brzina kod $gbest$ i $lbest$ PSO algoritama.
+Kod ovog pristupa je vrednost $w$ izuzetno važna za ostvarivanje konvergencije, kao i za prethodno pomenuti balans između eksploracije i ekspoatacije. Razlikuju se slučaji kada je $w ≥ 1$, tada se brzine povećavaju tokom vremena prema Vmax i roj divergira, dok za $w < 0$ brzine opadaju sve dok ne dostignu nulu i time se algoritam zaustavlja, a za $0 < w < 1$ čestice usporavaju, pa konvergencija zavisi od vrednosti $c_1$ i $c_2$. Tako velike vrednosti  $w$ olakšavaju eksploraciju, dok male vrednosti podstiče loakalnu eksploataciju. 
+Kao i kod $V_{max}$, i ovaj pristup zavisi od samog problema. U početku se koristila konstantna vrednost $w$, za svaku česticu u svakoj dimenziji, a kasnije se započelo sa dinamičkim promenama vrednosti, počinjavši od velike inercijske vrednosti koja se vremenom smanjivala. Time se u početnim koracima dozvoljava da čestice istražuju, a zatim počinju da favorizuju određene delove područja kako vreme odmiče.
+Vrednost $w$ se mora birati zajedno sa vrednostima $c_1$ i $c_2$ (konstante ubrzanja). $$w > \frac{1}{2}(c_1 + c_2) - 1$$ Ovo garantuje da će putanje čestica voditi ka konvergenciji, a ukoliko ovaj uslov nije zaodovoljen, može doći do cikličnog ponašanja, ili pak divergencije.
+
+\subsection{Koeficijent suženja}
+Clerc je razvio pristup sličan inerciji težina, gde su brzine ograničene konstantom \chi koji se naziva koeficijentom suženja. Jednačina sada izgleda ovako:
+
+\[v_{ij} (t + 1) = \chi[v_{ij} (t) + \phi_1 (y_{ij} (t) - x_{ij} (t)) + \phi_2 (\hat{y}_j (t) - x_{ij} (t))]\]
+gde je $$\chi = \frac{2k}{|2-\phi-\sqrt{\phi(\phi-4)}|},$$sa $\phi = \phi_1 +  \phi_2 , \phi_1 = c_1r_1$ i $\phi_2 = c_2r_2$.
+Jednačina se primenjuje pod ograničenjima gde je $\phi \geq 4$ i $k$ $\in [0, 1]$
+Ovaj pristup napravljen je kao prirodan, dinamički način da se osigura konvergencija ka stabilnoj tački, bez potrebe za smanjivanjem brzine, roj će konvergirati zbog gorenavedenih ograničenja.
+Parametar $k$ u jednačini kontroliše sposobnost eksploracije i eksploatacije, za $κ ≈ 0$ se postiže brza konvergencija uz lokalnu eksploataciju, dok za  $κ ≈ 1$ sporo konvergira, sa visokim stepenom eksploracije. $k$ se obično postavlja na konstantnu vrednost.
+
+Razlika između pristupa smanjenja brzina i koeficijenta suženja je ta da smanjenje brzina nije neophodno za model suženja (Eberhart i Shi su pokazali da ako se koriste zajedno mogu da dovedu do brže konvergencije). Model suženja garantuje konvergenciju pod datim ograničenjima i kod njega svaka promena smera čestica mora se izvršiti preko konstnti $\phi_1$ i $\phi_2$.
+
+\subsection{Modeli brzina}
+Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u tome kako se utvrđuju najbolji položaji. Neki od njih su:
+\begin{itemize}
+    \item \textbf{Cognition-Only}, kognitivni model isključuje socijalnu komponentu iz jednačine, pa jednačina izgleda ovako: $$v_{ij} (t + 1) = v_{ij} (t) + c_1r_{1j} (t)(y_{ij} (t) - x_{ij} (t)).$$ Ovaj model se može uporediti sa nostalgijom i ilustruje stohastičku tendenciju  da se čestice vraćaju u svoju najbolju poziciju. Ovaj model je sporiji, potrebno je više iteracija da bi se dostiglo dobro rešenje, a, takođe, ne uspeva kada je malo smanjenje brzina i koeficijent ubrzanja.
+    \item \textbf{Social-Only}, socijalni model isključuje kognitivnu komponentu iz jednačine: $v_{ij} (t + 1) = v_{ij} (t) + c_2r_{2j} (t)(\hat{y}_j (t) - x_{ij} (t))$ u $gbest$ PSO algoritmu. Kod ovog modela čestice nemaju tendenciju da se vraćaju na prethodno najbolje pozicije, već sve čestice idu ka najboljem položaju svog okruženja. Ovaj model se pokazao bržim od originalnog i kognitivnog modela.
+    \item \textbf{Selfless}, kod ovog modela koji je sličan socijalnom, najbolje rešenje iz okruženja se bira isključivo iz suseda čestica. On se pokazao kao brži od socijalnog modela u čak nekoliko problema.
+\end{itemize}
+
+\end{document}
+
 \section{Topologije uticaja}
 \end{document}
