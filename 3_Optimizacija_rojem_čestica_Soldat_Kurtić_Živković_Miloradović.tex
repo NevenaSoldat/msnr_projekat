@@ -221,6 +221,120 @@ Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u to
     \item \textbf{Social-Only}, socijalni model isključuje kognitivnu komponentu iz jednačine: $v_{ij} (t + 1) = v_{ij} (t) + c_2r_{2j} (t)(\hat{y}_j (t) - x_{ij} (t))$ u $gbest$ PSO algoritmu. Kod ovog modela čestice nemaju tendenciju da se vraćaju na prethodno najbolje pozicije, već sve čestice idu ka najboljem položaju svog okruženja. Ovaj model se pokazao bržim od originalnog i kognitivnog modela.
     \item \textbf{Selfless}, kod ovog modela koji je sličan socijalnom, najbolje rešenje iz okruženja se bira isključivo iz suseda čestica. On se pokazao kao brži od socijalnog modela u čak nekoliko problema.
 \end{itemize}
+
+\vspace{15mm}
+\section{Primer rešavanja problema rekonfiguracije i planiranja distributivne mreže algoritmom za optimizaciju rojem čestica}
+
+\vspace{5mm} 
+
+
+Topologije distributivnih mreža su dugi niz godina bile sa ograničenim mogućnostima promene strukture, zbog niskog stepena automatizacije i ograničenih mogućnosti daljinskog upravljanja. 
+Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan, diskretan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}. Pored toga, uvažavanjem tehničkih ograničenja i različitih optimizacionih kriterijuma, određivanje optimalnog uklopnog stanja mreže se značajno usložnjava.
+
+\textbf{Cilj} rekonfiguracije i planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.\\
+
+Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na optimizaciji rojem čestica sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži. 
+
+\vspace{5mm} 
+
+\textbf{Formulisanje problema:} 
+
+\vspace{5mm} 
+
+Rekonfiguracija distributivne mreže sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži prema teoriji grafova svodi se na pronalazak optimalne konfiguracije mreže, odnosno pronalazak razapinjujućeg stabla grafa za koji je optimizacioni kriterijum ispunjen. Pod razapinjujućem stablom (eng. spanning trees) podrazumevamo podgraf koji se dobija iz grafa uklanjanjem određenog broja  grana iz grafa, a da pritom graf ostane povezan sa istim brojem čvorova. 
+
+\vspace{5mm} 
+
+Faktori koji se moraju razmatrati  u optimizaciji distributivnog sistema:
+
+\begin{itemize}
+    \item minimizacija gubitka energije,
+    \item minimizacija ulaganja u nove objekte i distributivnih vodova,
+    \item maksimizacija pouzdanosti sistema.
+\end{itemize}
+
+
+Povrh toga, neka ograničenja se moraju uzeti u obzir:
+
+\begin{itemize}
+    \item kapacitet vodova,
+    \item naponski nivo opterećenja u čvorovima,
+    \item grafikon povezivanja,
+    \item radijalnost mreže.
+\end{itemize}
+
+\vspace{5mm} 
+
+Problem je formulisan sa dve funkcije cilja. Prva funkcija cilja odnosi se na gubitke energije. U ovoj funkciji figurišu troškovi održavanja i troškovi gubitaka kao i fiksni troškovi. Druga funkcija cilja koja se koristi je vezana za pouzdanost sistema i smanjuje ukupnu neisporučenu energiju. U ovoj funkciji figurišu stope otkaza i trajanja popravke svake napojne grane. Minimizacija ovog cilja maksimizuje pouzdanost mreža.
+
+\vspace{5mm} 
+
+Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice u d–dimenzionalnom prostoru rešenja izračunata u k+1-oj iteraciji u opštem slučaju nije celi broj, što znači da se PSO algoritam ne može primenjivati za rešavanje diskretnih optimizacionih problema. U tu svrhu 1997. godine Eberhart i Kennedy predstavili su binarnu verziju PSO algoritma, koja predstavlja modifikaciju PSO algoritma za rešavanje diskretnih optimizacionih problema. Modifikacija se ogleda kroz normalizaciju brzine čestice na datoj poziciji u intervalu [0, 1].
+
+\vspace{10mm} 
+
+\textbf{Kodiranje čestica:} 
+
+\vspace{5mm} 
+
+Šema kodiranja čestica kodira topologiju mreže, odnosno, transformatorske stanice i putanje fidera. Koriste se dve vrste šema kodiranja- direktno i indirektno. Najčešće korišćeno kodiranje je direktno međutim slabost takvog pristupa je potencijalno dobijanje upetljanih mreža. Da bi se to izbeglo, koristi se hibridni pristup direktnog i indirektnog kodiranja, gde čestice sadrže dva segmenta.
+
+\vspace{5mm} 
+
+\begin{itemize}
+\item \textbf{Segment fidera} – Sastoji se od podsegmenta “pristrasnosti” čvora vrednosti $\rho$,  $\rho \in (-1,1)$, odnosno, indirektna informacija koja dekodiranjem daje mrežnu topologiju i drugi podsegment sadrži broj fidera (\(N_{Fi}\) za transformatorske podstanice i) za svaku podstanicu, što je direktna informacija.
+
+\item \textbf{Segment trafostanica} – Sadrži direktne informacije o lakaciji svake transformatorske stanice \(X_{i}\) i \(Y_{i}\) koordinate transformatorskih stanica u dvodimenzionoj ravni).
+\end{itemize}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.3]{foto4.jpg}
+    \caption{Šema kodiranja}
+    \label{fig:velocity}
+\end{figure}
+
+\textbf{Šema dekodiranja:} 
+
+\vspace{5mm} 
+
+U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti (D) između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova.
+
+\vspace{5mm}
+
+\textbf{Pseudo kod:} \\ 
+\textbf{Početak:} /*Inicijalizacija- podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
+k = 0; \\
+$s^k = s_{i}^0;$  /*Generisanje početne tačke pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
+$v^k = v_{i}^0;$  /*Generisanje početne brzine pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
+Dekodiranje svih čestica; /*Po predloženoj šemi dekodiranja*/ \\
+Oceniti f(k); /* Izračunati vrednosti funkcije cilja svake čestice u tekućoj populaciji k*/ \\
+\textbf{Ponavljati:}/*Globalna iteracija, k*/ \\
+$v_{i}^k+1 = wv_{i}^k + c_{1}rand_{1} x (pbest_{i} - s_{i}^k) + c_{2}rand_{2} x (gbest_{i} - s_{i}^k);$ /*Ažuriraj brzinu za sve čestice */ \\
+$s_{i}^{k+1} = s_{i}^k + v_{i}^{k+1};$ /*Ažuriraj poziciju za sve čestice*/ \\
+Dekodiranje svih čestica; \\
+Oceniti f(k); /* Izračunati vrednost funkcije cilja svake čestice u tekućoj populaciji k*/ \\
+\textbf{If} f(k)>pbest(k) \textbf{Then} pbest(k+1)=f(k) /*Prihvatiti funkciju cilja f(k) čestice kao pbest(k+1) za tu česticu*/ \\
+\textbf{If} pbest(k)>gbest(k) \textbf{Then} gbest(k+1)=pbest(k) i pamti k-tu česticu  /*Prihvatiti pbest(k) kao gbest(k+1) i sačuvaj k-tu česticu kao najbolju*/ \\
+$k = k+1;$ \\
+\textbf{Dok} nije ispunjen zahtev za zaustavljanje; /*$k > k_{max}$  */ \\
+\textbf{Izlaz:} Najbolje nađeno rešenje \\
+
+
+\section{Primene PSO}
+
+\begin{itemize}
+    \item U dizajnu antena – kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…
+    \item U biomedicini- u svrhu detekcije Parkinsonove bolesti na temelju drhtavice, optimizacije biomehaničkog ljudskog pokreta, klasifikacije raka i predviđanja ostatka života, dizajniranje lekova.
+    \item Za dizajniranju bluetooth mreža, usmeravanje, za izgradnju radarskih mreža.
+    \item Kombinatorni problemi- rešavanje problema trgovačkog putnika, optimizacija puta…
+    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
+    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
+    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
+    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
+     
+   
+\end{itemize}
 \section{Topologije uticaja}
 
 \addcontentsline{toc}{section}{Literatura}
