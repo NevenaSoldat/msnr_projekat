@@ -68,9 +68,9 @@
 \maketitle
 
 \abstract{ Kennedy i Eberhart (2001): \\
-\say{... gledamo u paradigmu koja je u svom začeću, puna potencijala i novih ideja i novih perspektiva... Istraživači u mnogim zemljama eksperimentišu sa rojevima čestica... Mnoga pitanja koja su postavljena još uvek nisu dobila dobar odgovor.}
+\say{... gledamo u paradigmu koja je u svom začeću, puna potencijala i novih ideja i novih perspektiva... Istraživači u mnogim zemljama eksperimentišu sa rojevima čestica... Mnoga pitanja koja su postavljena još uvek nisu dobila dobar odgovor \cite{poli2007particle}}
 
-U ovom radu opisaćemo osnovni algoritam za optimizaciju rojem čestica, kao i neke od postojećih varijacija. Objasnićemo jednostavnije algoritme sa jedinstvenim rešenjem, ali i neke naprednije. Tema će biti i socijalne strukture na kojima se on zasniva, kao i koje su moguće primene. 
+U ovom radu opisujemo osnovni algoritam za optimizaciju rojem čestica, kao i neke od postojećih varijacija. Objašnjene su socijalne strukture na kojima se on zasniva. Navedeni su primeri korišćenja, kao i koje su moguće primene. 
 }
 
 \tableofcontents
@@ -86,14 +86,14 @@ Optimizacija rojem čestica (eng. Particle Swarm Optimization - PSO) je stohasti
 
 
 \section{Algoritam za optimizaciju rojem čestica}
-Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete preko polja sa cvećem. Roj ima urođenu želju da pronađe poziciju gde je cveće najgušće raspoređeno. Takođe, pčele nemaju nikakvo znanje o polju na kom se nalaze. Tako počinju svoju pretragu u različitim smerovima. Svaka pčela pamti mesta na kojima je bila i na kojim je bilo najviše cveća, i tu informaciju može preneti komunikacijom sa ostatkom roja. Kako vreme prolazi, pčele biraju da li će se vratiti na svoje prethodno pronađene najbolje lokacije ili će ići ka lokacijama koje su dobile od ostalih pčela. One koje oklevaju će ići u oba pravca i nalaziće se negde između ciljanih lokacija, u zavisnosti od toga da li će socijalan uticaj biti dominantan ili ne. Povremeno, pčela može da preleti preko dela polja u kom se nalazi više cveća od do sad otkrivenih lokacija. Tada će se čitav roj povlačiti ka novootkrivenoj lokaciji.
+Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete preko polja sa cvećem \cite{10.4018/IJRSDA.2018040101}. Roj ima urođenu želju da pronađe poziciju gde je cveće najgušće raspoređeno. Takođe, pčele nemaju nikakvo znanje o polju na kom se nalaze. Tako počinju svoju pretragu u različitim smerovima. Svaka pčela pamti mesta na kojima je bila i na kojim je bilo najviše cveća, i tu informaciju može preneti komunikacijom sa ostatkom roja. Kako vreme prolazi, pčele biraju da li će se vratiti na svoje prethodno pronađene najbolje lokacije ili će ići ka lokacijama koje su dobile od ostalih pčela. One koje oklevaju će ići u oba pravca i nalaziće se negde između ciljanih lokacija, u zavisnosti od toga da li će socijalan uticaj biti dominantan ili ne. Povremeno, pčela može da preleti preko dela polja u kom se nalazi više cveća od do sad otkrivenih lokacija. Tada će se čitav roj povlačiti ka novootkrivenoj lokaciji.
 \begin{figure}[htp]
     \centering
     \includegraphics[scale=1.2]{bees.png}
     \caption{Prikaz PSO algoritma na kojem pčele traže cveće}
     \label{fig:bees}
 \end{figure}
-\\ \indent Na slici 1, isprekidane linije predstavljaju zamišljene putanje pčela, a strelice prikazuju dve komponente brzine (lokalno najbolju poziciju i globalno najbolju poziciju). Pčela u gornjem delu slike je pronašla globalno najbolju poziciju, dok je pčela sa leve strane pronašla lokalno najbolju poziciju. Pčela u donjem delu slike prikazuje da iako nije pronašla lokalno najbolju poziciju, ide ka globalno najboljoj poziciji. \\
+\\ \indent Na slici \ref{fig:bees}, isprekidane linije predstavljaju zamišljene putanje pčela, a strelice prikazuju dve komponente brzine (lokalno najbolju poziciju i globalno najbolju poziciju). Pčela u gornjem delu slike je pronašla globalno najbolju poziciju, dok je pčela sa leve strane pronašla lokalno najbolju poziciju. Pčela u donjem delu slike prikazuje da iako nije pronašla lokalno najbolju poziciju, ide ka globalno najboljoj poziciji. \\
 \indent Na ovaj način pčele pretražuju polje tako što menjaju brzine i pravac kretanja u zavisnosti od toga da li je imala uspeha da pronađe cveće u odnosu na čitav roj. Takođe pčele znaju da izbegavaju mesta koja nisu imala puno cveća. Na kraju će pretražiti celo polje, i nalaziće se iznad mesta na kojem je najveća gustina cveća.
 
 \subsection{Originalni PSO}
@@ -119,7 +119,7 @@ Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;\\
 \hspace*{10mm} ažuriraj brzinu; \\
 \hspace*{10mm} ažiriraj poziciju; \\
 \hspace*{5mm} \textbf{kraj} \\
-\textbf{dok} nije ispunjen zahtev za zaustavljanje; \\ \\Funkcija $f:\mathbb{R}^{n_x} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.
+\textbf{dok} nije ispunjen zahtev za zaustavljanje; \\ \\Funkcija $f:\mathbb{R}^{n_s} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.
 \subsection{Komponente brzine PSO algoritma}
 Brzina \textit{i}-te čestice ima tri komponente:\\
 \begin{itemize}
@@ -135,6 +135,7 @@ Brzina \textit{i}-te čestice ima tri komponente:\\
     \label{fig:velocity}
 \end{figure}
 
+U svakoj generaciji, iterativni proces čestice izgleda kao na slici \ref{fig:velocity}. Analizirajući ažuriranje brzine, vidimo da je prvi deo uticaj prethodne brzine čestice. To znači da čestica veruje da je na dobrom putu i kreće se inercijalno. Drugi deo zavisi od trenutne pozicije čestice i njene najbolje pozicije do sada, odnosno od kognitivne komponente brzine. Treći deo se oslanja na udaljenost trenutne pozicije čestice i globalno najbolje pozicije u roju, odnosno na socijalnu komponentu brzine \cite{wang2018particle}. 
 
 \subsection{Algoritmi gbest i lbest PSO}
 \label{subsec:podnaslov1}
@@ -147,11 +148,13 @@ Važno je napomenuti da kod osnovnog PSO algoritma čestice nisu povezane. Razvi
 \begin{enumerate}
     \item Za pristupe koji podrazumevaju računanje udaljenosti između čestica, potrebno je naći Euklidsko rastojanje svih parova čestica, a to ima veliku složenost ($(n_s)^2$).
     \item Lakše je prosleđivanje informacije o dobrim rešenjima svim česticama, nezavisno od njihove lokacije u prostoru pretrage.
-    
+
 \end{enumerate}
+Obe strategije zasnovane su na nekom socijalnom ponašanju. Kako bismo slikovito prikazali zašto nije dobro birati susedstvo na osnovu udaljenosti? Zamislite da koordinate u prostoru predstavljaju mentalne sposobnosti osobe. U tom slučaju, dve veoma slične osobe možda se nikada ne bi srele, a možemo imati dve veoma različite osobe koje će uvek biti susedne \cite{liu2006particle}.
+    
 
 \subsubsection{Poređenje gbest i lbest PSO algoritma}
-Dve verzije PSO algoritma koje smo opisali su slične u smislu da obe teže ka globalno najboljem rešenju. Međutim postoje dve osnovne razlike:
+Dve verzije PSO algoritma koje smo opisali su slične u smislu da obe teže ka globalno najboljem rešenju. Međutim postoje dve osnovne razlike \cite{engelbrecht2007computational}:
 \begin{itemize}
     \item Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost.
     \item Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate.
@@ -188,7 +191,7 @@ Postoje i mane, promene brzine ne menjaju samo veličinu koraka, već i pravac u
     \centering
     \includegraphics[scale=0.3]{slika3_1.png}
     \caption{Efekat smanjenja brzine}
-    \label{fig:velocity}
+    \label{fig:smanjenje_brzina}
 \end{figure}
 
 Postoji još i problem kada su sve vrednosti jednake $V_{max}$, a ako se ne preduzme ništa povodnom toga, čestice se zaglavljuju unutar ograničene oblasti $[x_i(t)-V_{max} , x_i(t) + V_{max} ]$.  Ovaj problem se može rešiti uvođenjem inercijske težine ili smanjivanjem  $V_{max}$ vrednosti vremenom, tako što pretraga počine s velikim vrednostima i tako se pretražuje prostor, a zatim se postepeno smanjuje. Tako se ograničava globalna pretraga i osvrće se na lokalnu u već kasnim fazama pretraživanja. $V_{max}$ se može menjati kada nema napretka u globalno najboljoj poziciji u toku određenog broja uzastopnih iteracija, ili se može eksponencijalno smanjivati.
@@ -204,7 +207,7 @@ Kao i kod $V_{max}$, i ovaj pristup zavisi od samog problema. U početku se kori
 Vrednost $w$ se mora birati zajedno sa vrednostima $c_1$ i $c_2$ (konstante ubrzanja). $$w > \frac{1}{2}(c_1 + c_2) - 1$$ Ovo garantuje da će putanje čestica voditi ka konvergenciji, a ukoliko ovaj uslov nije zaodovoljen, može doći do cikličnog ponašanja, ili pak divergencije.
 
 \subsection{Koeficijent suženja}
-Clerc je razvio pristup sličan inerciji težina, gde su brzine ograničene konstantom \chi koji se naziva koeficijentom suženja. Jednačina sada izgleda ovako:
+Clerc je razvio pristup sličan inerciji težina, gde su brzine ograničene konstantom $\chi$ koji se naziva koeficijentom suženja. Jednačina sada izgleda ovako:
 
 \[v_{ij} (t + 1) = \chi[v_{ij} (t) + \phi_1 (y_{ij} (t) - x_{ij} (t)) + \phi_2 (\hat{y}_j (t) - x_{ij} (t))]\]
 gde je $$\chi = \frac{2k}{|2-\phi-\sqrt{\phi(\phi-4)}|},$$sa $\phi = \phi_1 +  \phi_2 , \phi_1 = c_1r_1$ i $\phi_2 = c_2r_2$.
@@ -291,7 +294,7 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
     \centering
     \includegraphics[scale=0.3]{foto4.jpg}
     \caption{Šema kodiranja}
-    \label{fig:velocity}
+    \label{fig:sema_kodiranja}
 \end{figure}
 
 \textbf{Šema dekodiranja:} 
