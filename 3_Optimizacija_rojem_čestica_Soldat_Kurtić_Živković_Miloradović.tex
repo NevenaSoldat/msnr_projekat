@@ -169,25 +169,21 @@ Postoji nekoliko modifikacija osnovnog PSO algoritma \cite{rini2011particle}, a 
 Za efikasnost i tačnost algoritma optimizacije važno je napraviti balans između eksploracije i eksploatacije. 
 $Eksploracija$ se odnosi na sposobnost algoritma pretrage da istražuje različite regione prostora pretrage da bi se pronašao dobar optimum, dok je $eksploatacija$ sposobnost  da se pretraga koncentriše oko regije koje garantuje nalaženje rešenja da bi se poboljšao kandidat rešenja. Ovo su konktradiktorni ciljevi koje treba dovesti u balans radi dobijanja dobrog optimizacionog algoritma.
 
-Ažuriranja brzina u gorenavedenoj jednačini, predstavljena trima uslovima, doprinose veličini koraka čestice. U ranijim, osnovnim PSO algoritmima je primećeno da brzina brzo dostiže velike vrednosti, specijalno kod čestica koje su daleko od najboljih u okruženju i najboljih sopstvenih pozicija. Tim čestim ažuriranjima položaja jedinke polako napuštaju granice prostora pretrage, tj. divergiraju, pa se te brzine smanjuju da bi čestice ostale u okviru granica. Ako brzina prelazi maksimalnu brzinu, postavlja se na taj maksimalnu brzinu, inace se brzina na standardni način ažurira.
+Ažuriranje brzine u gorenavedenoj jednačini doprinosi veličini koraka čestice. U ranijim, osnovnim PSO algoritmima je primećeno da brzina brzo dostiže velike vrednosti, specijalno kod čestica koje su daleko od najboljih u okruženju i najboljih sopstvenih pozicija. Čestim ažuriranjem položaja jedinke polako napuštaju granice prostora pretrage, tj. divergiraju. Zato se brzine smanjuju kako bi čestice ostale u okviru granica. Ako brzina prelazi maksimalnu vrednost onda joj se dodeljuje baš ta vrednost, inače se na standardni način ažurira.
 
 \begin{equation}
-    v_{ij}(t+1) = \begin{cases}
+    v_i(t+1) = \begin{cases}
                 
-            v'_{ij}(t+1)  & if  v'_{ij}(t+1) < V_{max,j}\\
-            V_{max,j}  & if  v'_{ij}(t+1) \geq V_{max,j}
+            v'_i(t+1),  &  v'_i(t+1) < V_{max}\\
+            V_{max},  &   v'_i(t+1) \geq V_{max}
            
              \end{cases}
 \end{equation}
 
 Velike vrednosti maksimalne brzine olakšavaju istraživanje na globalnom nivou, dok manje vrednosti podstiču lokalnu eksploataciju. I premale i prevelike vrednosti maksimalne brzine imaju svoje mane. Dok veoma male vrednosti mogu da povećaju broj vremenskih koraka do nalaženja optimalne vrednosti, tako veoma velike vrednosti brzina mogu dovesti da se sasvim propusti dobar region, ali se uz to čestice ipak brže kreću. 
-Tako osim prblema balansa eksploracije i eksploatacije treba pronaći i dobar balans za svaki $V_{max}$, da ne bude ni premala, a ni prevelika vrednost. Obično se biraju da budu deo domena svake dimenzije prostora pretrage. 
+Tako osim problema balansa eksploracije i eksploatacije treba pronaći i dobar balans za svaki $V_{max}$, da ne bude ni premala, a ni prevelika vrednost.
 
-\[V_{max,j} = \delta(x_{max,j} − x_{min,j} ),\]
-gde su $x_{max,j}$ i $x_{min,j}$ maksimualne i minimalne vrednosti domena $x$ u dimenziji $j$, a $\delta \in (0, 1]$.
-Vrednosti $\delta$ zavisi od samog problema.
-
-Postoje i mane, promene brzine ne menjaju samo veličinu koraka, već i pravac u kome će se čestica kretati, to može biti prednost-omogućava bolju eksploraciju, ali isto tako može da dovede do toga da optimum uopšte ne bude pronađen.
+Loša strana promene brzine leži u tome što se menja i pravac kretanja čestice, što omogućava bolju eksploraciju, ali isto tako može da dovede do toga da optimum uopšte ne bude pronađen.
 
 \begin{figure}[htp]
     \centering
