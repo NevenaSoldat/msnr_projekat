@@ -81,7 +81,9 @@ U ovom radu opisujemo osnovni algoritam za optimizaciju rojem čestica, kao i ne
 \label{sec:uvod}
 
 Inteligencija rojeva predstavlja jednu od pet glavnih paradigmi Računarske Inteligencije (Computation Intelligence - CI). Jedinke u okviru grupe (roja) dele prikupljene informacije u zajedničkom cilju da reše neki problem, koje se propagiraju kroz celu grupu tako da se problem rešava mnogo efikasnije nego što bi to mogla pojedinačna jedinka.
+
 Prvi i dosta značajan doprinos u polju inteligencije rojeva imao je južnoafrički pesnik Eugene N Marais koji je proučavao socijalno ponašanje kako majmuna, tako i mrava. Posle njega, ranih 1990-ih godina, Marco Dorigo modeluje ponašanje kolonija mrava. Zatim, 1995, Eberhart i Kennedy razvijaju algoritam optimizacije rojem čestica, na osnovu posmatranog jata ptica.
+
 Optimizacija rojem čestica (eng. Particle Swarm Optimization - PSO) je stohastička optmizaciona tehnika zasnovana na veoma inteligentnom kolektivnom ponašanju nekih organizama kao što su insekti, ptice i ribe. Algoritam optimizacije rojem čestica otkriven je sasvim slučajno od strane Eberharta i Kenedija, pri pokušaju da se na računaru simulira kretanje jata ptica. Prvobitna namera bila je da se grafički prikaže nepredvidiva koreografija jata ptica, sa ciljem da se otkriju obrasci koji omogućavaju pticama da lete sinhronizovano, i da zadrže optimalnu formaciju pri naglim promenama pravaca. Sada je cilj kreiranje jednostavnog i efikasnog optimizacionog algoritma. Od kada je prvi put predstavljen 1995. doživeo je niz poboljšanja i nastale su brojne varijacije ovog algoritma. 
 
 
@@ -226,8 +228,23 @@ Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u to
 \end{itemize}
 
 \vspace{15mm}
-\section{Primer rešavanja problema rekonfiguracije i planiranja distributivne mreže algoritmom za optimizaciju rojem čestica}
+\section{Primene}
+Postoje različiti načini primene PSO algoritma. Neki su opštiji, dok su ostali specifičniji. Pod opštim se misli na pristup koji obuhvata širok opseg specifičnih primena. A specifične primene podrazumevaju primenu na jasno definisan problem.
+Neke od primena su sledeće:
+\begin{itemize}
+    \item U dizajnu antena – kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…
+    \item U biomedicini- u svrhu detekcije Parkinsonove bolesti na temelju drhtavice, optimizacije biomehaničkog ljudskog pokreta, klasifikacije raka i predviđanja ostatka života, dizajniranje lekova.
+    \item Za dizajniranju bluetooth mreža, usmeravanje, za izgradnju radarskih mreža.
+    \item Kombinatorni problemi- rešavanje problema trgovačkog putnika, optimizacija puta…
+    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
+    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
+    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
+    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
+     
+   
+\end{itemize}
 
+\subsection{Primer rešavanja problema rekonfiguracije i planiranja distributivne mreže}
 \vspace{5mm} 
 
 
@@ -240,15 +257,17 @@ Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na opti
 
 \vspace{5mm} 
 
+\begin{flushleft}
 \textbf{Formulisanje problema:} 
-
-\vspace{5mm} 
+\end{flushleft}
 
 Rekonfiguracija distributivne mreže sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži prema teoriji grafova svodi se na pronalazak optimalne konfiguracije mreže, odnosno pronalazak razapinjujućeg stabla grafa za koji je optimizacioni kriterijum ispunjen. Pod razapinjujućem stablom (eng. spanning trees) podrazumevamo podgraf koji se dobija iz grafa uklanjanjem određenog broja  grana iz grafa, a da pritom graf ostane povezan sa istim brojem čvorova. 
 
 \vspace{5mm} 
 
+\begin{flushleft}
 Faktori koji se moraju razmatrati  u optimizaciji distributivnog sistema:
+\end{flushleft}
 
 \begin{itemize}
     \item minimizacija gubitka energije,
@@ -256,8 +275,9 @@ Faktori koji se moraju razmatrati  u optimizaciji distributivnog sistema:
     \item maksimizacija pouzdanosti sistema.
 \end{itemize}
 
-
+\begin{flushleft}
 Povrh toga, neka ograničenja se moraju uzeti u obzir:
+\end{flushleft}
 
 \begin{itemize}
     \item kapacitet vodova,
@@ -276,9 +296,9 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
 
 \vspace{10mm} 
 
+\begin{flushleft}
 \textbf{Kodiranje čestica:} 
-
-\vspace{5mm} 
+\end{flushleft}
 
 Šema kodiranja čestica kodira topologiju mreže, odnosno, transformatorske stanice i putanje fidera. Koriste se dve vrste šema kodiranja- direktno i indirektno. Najčešće korišćeno kodiranje je direktno međutim slabost takvog pristupa je potencijalno dobijanje upetljanih mreža. Da bi se to izbeglo, koristi se hibridni pristup direktnog i indirektnog kodiranja, gde čestice sadrže dva segmenta.
 
@@ -297,47 +317,30 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
     \label{fig:sema_kodiranja}
 \end{figure}
 
+\begin{flushleft}
 \textbf{Šema dekodiranja:} 
+\end{flushleft}
 
-\vspace{5mm} 
-
-U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti (D) između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova.
-
-\vspace{5mm}
-
-\textbf{Pseudo kod:} \\ 
-\textbf{Početak:} /*Inicijalizacija- podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
-k = 0; \\
-$s^k = s_{i}^0;$  /*Generisanje početne tačke pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
-$v^k = v_{i}^0;$  /*Generisanje početne brzine pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
-Dekodiranje svih čestica; /*Po predloženoj šemi dekodiranja*/ \\
-Oceniti f(k); /* Izračunati vrednosti funkcije cilja svake čestice u tekućoj populaciji k*/ \\
+U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti (D) između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova.\\
+\\ 
+\textbf{Pseudokod:} \\ 
+\textbf{Početak:} /*Inicijalizacija - podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
+\hspace*{5mm}k = 0; \\
+\hspace*{5mm}$s^k = s_{i}^0;$  /*Generisanje početne tačke pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
+\hspace*{5mm}$v^k = v_{i}^0;$  /*Generisanje početne brzine pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
+\hspace*{5mm}Dekodiranje svih čestica; /*Po predloženoj šemi dekodiranja*/ \\
+\hspace*{5mm}Oceniti f(k); /* Izračunati vrednosti funkcije cilja svake čestice u tekućoj populaciji k*/ \\
 \textbf{Ponavljati:}/*Globalna iteracija, k*/ \\
-$v_{i}^k+1 = wv_{i}^k + c_{1}rand_{1} x (pbest_{i} - s_{i}^k) + c_{2}rand_{2} x (gbest_{i} - s_{i}^k);$ /*Ažuriraj brzinu za sve čestice */ \\
-$s_{i}^{k+1} = s_{i}^k + v_{i}^{k+1};$ /*Ažuriraj poziciju za sve čestice*/ \\
-Dekodiranje svih čestica; \\
-Oceniti f(k); /* Izračunati vrednost funkcije cilja svake čestice u tekućoj populaciji k*/ \\
-\textbf{If} f(k)>pbest(k) \textbf{Then} pbest(k+1)=f(k) /*Prihvatiti funkciju cilja f(k) čestice kao pbest(k+1) za tu česticu*/ \\
-\textbf{If} pbest(k)>gbest(k) \textbf{Then} gbest(k+1)=pbest(k) i pamti k-tu česticu  /*Prihvatiti pbest(k) kao gbest(k+1) i sačuvaj k-tu česticu kao najbolju*/ \\
-$k = k+1;$ \\
+\hspace*{5mm}$v_{i}^k+1 = wv_{i}^k + c_{1}rand_{1} x (pbest_{i} - s_{i}^k) + c_{2}rand_{2} x (gbest_{i} - s_{i}^k);$ /*Ažuriraj brzinu za sve čestice */ \\
+\hspace*{5mm}$s_{i}^{k+1} = s_{i}^k + v_{i}^{k+1};$ /*Ažuriraj poziciju za sve čestice*/ \\
+\hspace*{5mm}Dekodiranje svih čestica; \\
+\hspace*{5mm}Oceniti f(k); /* Izračunati vrednost funkcije cilja svake čestice u tekućoj populaciji k*/ \\
+\hspace*{5mm}\textbf{If} f(k)>pbest(k) \textbf{Then} pbest(k+1)=f(k) /*Prihvatiti funkciju cilja f(k) čestice kao pbest(k+1) za tu česticu*/ \\
+\hspace*{5mm}\textbf{If} pbest(k)>gbest(k) \textbf{Then} gbest(k+1)=pbest(k) i pamti k-tu česticu  /*Prihvatiti pbest(k) kao gbest(k+1) i sačuvaj k-tu česticu kao najbolju*/ \\
+\hspace*{5mm}$k = k+1;$ \\
 \textbf{Dok} nije ispunjen zahtev za zaustavljanje; /*$k > k_{max}$  */ \\
 \textbf{Izlaz:} Najbolje nađeno rešenje \\
 
-
-\section{Primene PSO}
-
-\begin{itemize}
-    \item U dizajnu antena – kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…
-    \item U biomedicini- u svrhu detekcije Parkinsonove bolesti na temelju drhtavice, optimizacije biomehaničkog ljudskog pokreta, klasifikacije raka i predviđanja ostatka života, dizajniranje lekova.
-    \item Za dizajniranju bluetooth mreža, usmeravanje, za izgradnju radarskih mreža.
-    \item Kombinatorni problemi- rešavanje problema trgovačkog putnika, optimizacija puta…
-    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
-    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
-    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
-    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
-     
-   
-\end{itemize}
 \section{Topologije uticaja}
 
 \addcontentsline{toc}{section}{Literatura}
