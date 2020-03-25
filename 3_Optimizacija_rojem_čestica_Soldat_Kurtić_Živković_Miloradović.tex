@@ -158,7 +158,7 @@ Dve verzije PSO algoritma koje smo opisali su slične u smislu da obe teže ka g
 \end{itemize}
 
 \section{Osnovne varijacije}
-Postoji nekoliko modifikacija osnovnog PSO algoritma, a one su razvijane da bi poboljšale brzinu konvergencije i kvalitet rešenja koji ovaj algoritam nalazi.
+Postoji nekoliko modifikacija osnovnog PSO algoritma \cite{rini2011particle}, a one su razvijane da bi poboljšale brzinu konvergencije i kvalitet rešenja koji ovaj algoritam nalazi.
 
 \subsection{Smanjenje brzina}
 Za efikasnost i tačnost algoritma optimizacije važno je napraviti balans između eksploracije i eksploatacije. 
@@ -221,8 +221,12 @@ Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u to
     \item \textbf{Social-Only}, socijalni model isključuje kognitivnu komponentu iz jednačine: $v_{ij} (t + 1) = v_{ij} (t) + c_2r_{2j} (t)(\hat{y}_j (t) - x_{ij} (t))$ u $gbest$ PSO algoritmu. Kod ovog modela čestice nemaju tendenciju da se vraćaju na prethodno najbolje pozicije, već sve čestice idu ka najboljem položaju svog okruženja. Ovaj model se pokazao bržim od originalnog i kognitivnog modela.
     \item \textbf{Selfless}, kod ovog modela koji je sličan socijalnom, najbolje rešenje iz okruženja se bira isključivo iz suseda čestica. On se pokazao kao brži od socijalnog modela u čak nekoliko problema.
 \end{itemize}
-
-\end{document}
-
 \section{Topologije uticaja}
+
+\addcontentsline{toc}{section}{Literatura}
+\appendix
+\bibliography{bibliografija.bib} 
+\bibliographystyle{plain}
+
+
 \end{document}
