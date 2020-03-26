@@ -145,9 +145,11 @@ U svakoj generaciji, iterativni proces čestice izgleda kao na slici \ref{fig:ve
 \subsection{Algoritmi gbest i lbest PSO}
 \label{subsec:podnaslov1}
 
-U slučaju globalno najboljeg PSO algoritma (\textit{gbest}), susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. U topologiji zvezde socijalna komponenta brzine čestice predstavlja informaciju dobijenu od svih čestica u roju. 
+U slučaju globalno najboljeg PSO algoritma (eng. Global Best - \textit{gbest}), susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. U topologiji zvezde socijalna komponenta brzine čestice predstavlja informaciju dobijenu od svih čestica u roju. 
 
-Lokalno najbolji PSO (\textit{lbest}) koristi topologiju prstena, gde svaka čestica ima određeni broj suseda. Socijalna komponenta predstavlja informaciju koju razmenjuju susedi čestice. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
+Lokalno najbolji PSO (eng. Local Best - \textit{lbest}) koristi topologiju prstena, gde svaka čestica ima određeni broj suseda. Socijalna komponenta predstavlja informaciju koju razmenjuju susedi čestice. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
+
+Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost.Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate \cite{engelbrecht2007computational}.
 
 Važno je napomenuti da kod osnovnog PSO algoritma čestice nisu povezane. Razvijene su mnoge strategije na osnovu kojih se bira susedstvo, kao što je razdaljina u prostoru. Međutim, preferirano rešenje je odabir na osnovu indeksa, i za to postoje dva glavna razloga:
 \begin{enumerate}
@@ -155,16 +157,8 @@ Važno je napomenuti da kod osnovnog PSO algoritma čestice nisu povezane. Razvi
     \item Lakše je prosleđivanje informacije o dobrim rešenjima svim česticama, nezavisno od njihove lokacije u prostoru pretrage.
 
 \end{enumerate}
-Obe strategije zasnovane su na nekom socijalnom ponašanju. Kako bismo slikovito prikazali zašto nije dobro birati susedstvo na osnovu udaljenosti? Zamislite da koordinate u prostoru predstavljaju mentalne sposobnosti osobe. U tom slučaju, dve veoma slične osobe možda se nikada ne bi srele, a možemo imati dve veoma različite osobe koje će uvek biti susedne \cite{liu2006particle}.
+Obe strategije zasnovane su na nekom socijalnom ponašanju. Zašto nije dobro birati susedstvo na osnovu udaljenosti? Zamislite da koordinate u prostoru predstavljaju mentalne sposobnosti osobe. U tom slučaju, dve veoma slične osobe možda se nikada ne bi srele, a možemo imati dve veoma različite osobe koje će uvek biti susedne \cite{liu2006particle}.
     
-
-\subsubsection{Poređenje gbest i lbest PSO algoritma}
-Dve verzije PSO algoritma koje smo opisali su slične u smislu da obe teže ka globalno najboljem rešenju. Međutim postoje dve osnovne razlike \cite{engelbrecht2007computational}:
-\begin{itemize}
-    \item Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost.
-    \item Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate.
-\end{itemize}
-
 \section{Osnovne varijacije}
 Postoji nekoliko modifikacija osnovnog PSO algoritma \cite{rini2011particle}, a one su razvijane da bi poboljšale brzinu konvergencije i kvalitet rešenja koji ovaj algoritam nalazi.
 
