@@ -338,6 +338,37 @@ U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rast
 \textbf{Izlaz:} Najbolje nađeno rešenje \\
 
 \section{Topologije uticaja}
+Na PSO direktono utiče raznolikost populacije kao i socijalna interakcija među česticama. Stoga, dizajniranje razlicitih topologija strukture populacije predstavlja bitnu tačku istraživanja kako bi se došlo do što boljih performansi.
+
+Čestice u roju uče jedne od drugih tako što razmenjuju informacije o uspešnosti svake čestice i na osnovu dobijenih saznanja postaju više slicne svojim boljim susedima. Veći utcaj na čestice imaće sused koji je više uspešan od suseda koji je manje uspešan. Kako se informacije kreću unutar određene strukture populacije govori nam stepen povezanosti čestica, broj klastera i najmanja razdaljina između čestica. Velika povezanost čestica utiče na brzo širenje informacija, što u pogledu optimizacije dovodi do brže konvergencije ka rešenju po cenu zaglavljivanja u lokalnom minimumu. Suprotno, ako čestice nisu dobro povezane postojaće više klastera(grupacija), informacije se sporije razmenjuju i može se desiti da se ne pokrije ceo prostor pretrage.
+
+Različite topoloske strukture su razvijane i istraživane za potrebe PSO algoritma a one koje su se najbolje pokazale su:
+\begin{itemize}
+    \item \textbf{Zvezda}: Svaka čestica komunicira sa svakom drugom česticom čime informacija o trenutno najboljoj čestici dolazi veoma brzo. Stoga, postoji mogućnost glavljenja u lokalnom minimunu. Prva implementacija PSO je koristila zvezdanu strukturu (gbest).
+    \item \textbf{Prsten}: Svaka čestica komunicira sa svojih N suseda. Kada je N=2 struktura izgleda kao na slici ??. Razlčita susedstva se preklapaju tako da informacije teku sporije. Konvergencija je sporija i pokriva se veći prostor pretrage.
+    \item \textbf{Točak}:Jedna čestica predstavlja žarište i sve informacije se prenose preko te čestice.
+    \item \textbf{Piramida}: Formira se trodimenzioni žičani okvir.
+    \item \textbf{Četiri klastera}: Četiri klastera povezani svaki sa svakim, dok se unutar jednog nalaze čestice povezane sa četiri suseda.
+    \item \textbf{Fon Nojmanova}: Socijalna struktura koja se u nekim slucajevima pokazala mnogo bolje nego druge strukture.
+\end{itemize}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.2]{Star.png}
+    \includegraphics[scale=0.2]{Ring.png}
+    \includegraphics[scale=0.2]{Wheel.png}
+    \caption{Zvezda, prsten i točak}
+    \label{fig:ZvezdaPrstenTocak}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.2]{Pyramid.png}
+    \includegraphics[scale=0.2]{FourClusters.png}
+    \includegraphics[scale=0.2]{VonNeumann.png}
+    \caption{Piramida, četiri klastera i Fon Nojman}
+    \label{fig:PiramidaCetiriKlasteraFonNojman}
+\end{figure}
+Odgovor na pitanje koja je topologija najbolja za sve probleme jeste da ne postoji takva.
+Kenedi i Mendes istraživačkim radom došli su do zaključka da je prilagodljivost zvezde, prstena i Fon Nojman topologija najbolja.Generalno, potpuno povezane strukture najbolje rade za unimodalne probleme i obrnuto.
 
 \addcontentsline{toc}{section}{Literatura}
 \appendix
