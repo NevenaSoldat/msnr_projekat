@@ -70,7 +70,7 @@
 \abstract{ Kennedy i Eberhart (2001): \\
 \say{... gledamo u paradigmu koja je u svom začeću, puna potencijala i novih ideja i novih perspektiva... Istraživači u mnogim zemljama eksperimentišu sa rojevima čestica... Mnoga pitanja koja su postavljena još uvek nisu dobila dobar odgovor \cite{poli2007particle}}
 
-U ovom radu opisujemo osnovni algoritam za optimizaciju rojem čestica, kao i neke od postojećih varijacija. Objašnjene su socijalne strukture na kojima se on zasniva. Navedeni su primeri korišćenja, kao i koje su moguće primene. 
+U ovom radu predstavljeni su osnovni koncepti optimizacione tehnike zasnovane na roju cestica. Opisani su glavni algoritmi, značaj i varijacije parametara, primene ove tehnike kao i različite populacione strukture čijim menjanjem, kao i menjanjem parametara, možemo da podešavamo i prilagođavamo ovu populacionu tehniku različitim problemima. 
 }
 
 \tableofcontents
@@ -102,7 +102,7 @@ Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete prek
 \indent Na ovaj način pčele pretražuju polje tako što menjaju brzine i pravac kretanja u zavisnosti od toga da li su imale uspeha da pronađu cveće u odnosu na čitav roj. Takođe pčele znaju da izbegavaju mesta koja nisu imala puno cveća. Na kraju će pretražiti celo polje, i nalaziće se iznad mesta na kojem je najveća gustina cveća.
 
 \subsection{Originalni PSO}
-Algoritam za optimizaciju rojem čestica sadrži jedinke (čestice) koje se se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
+Algoritam za optimizaciju rojem čestica sadrži jedinke koje se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
 Neka je $x_i(t)$ pozicija čestice \textit{i} u prostoru pretrage u trenutku \textit{t}. Pozicija čestice se menja dodavanjem brzine, $v_i(t)$ na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
 Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu do sada najbolju poziciju, kao i do sada najbolju poziciju čitavog roja. Kognitivna komponenta algoritma predstavlja tendenciju vraćanja u lično najbolje rešenje, dok socijalna komponenta predstavlja tendenciju ka globalno najboljem rešenju. Brzina se računa kao: \[ v_i(t+1) = v_i(t) + c_1r_1(p_i(t) - x_i(t)) + c_2r_2(p_g(t) - x_i(t))\]
 gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], dok su parametri $c_1$ i $c_2$ konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. 
@@ -129,7 +129,7 @@ Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;\\
 Brzina \textit{i}-te čestice ima tri komponente:\\
 \begin{itemize}
     \item \textbf{Prethodna vrednost brzine}, $\textbf{v}_i(t)$, koja čuva prethodni pravac kretanja čestice. Može se reći da je ona moment koji sprečava česticu da drastično promeni pravac. 
-    \item \textbf{Kognitivna komponenta}, $c_1\textbf{r}_1(\textbf{p}_i - \textbf{x}_i)$, koja meri rezultat čestice \textit{i} u ondosu na prethodne. Može se opisati kao pamćenje najbolje pozicije u kojoj se čestica do sada našla. Efekat ove komponente je tendencija čestica da se vrate na pronadjene najbolje pozicije. Kennedy i Eberhart su nazivali koginitivnu komponentu \say{nostalgija} čestice.
+    \item \textbf{Kognitivna komponenta}, $c_1\textbf{r}_1(\textbf{p}_i - \textbf{x}_i)$,  može se opisati kao pamćenje najbolje pozicije u kojoj se čestica do sada našla. Efekat ove komponente je tendencija čestica da se vrate na pronadjene najbolje pozicije. Kennedy i Eberhart su nazivali koginitivnu komponentu \say{nostalgija} čestice.
     \item \textbf{Socijalna komponenta}, $c_2\textbf{r}_2(\textbf{p}_g - \textbf{x}_i)$, koja meri rezultat čestice \textit{i} u odnosu na sve susedne čestice. Efekat ove komponente je tendencija čestice da se kreće ka najboljoj poziciji pronađenoj od strane susednih čestica.
 \end{itemize}
 
@@ -140,18 +140,18 @@ Brzina \textit{i}-te čestice ima tri komponente:\\
     \label{fig:velocity}
 \end{figure}
 
-U svakoj generaciji, iterativni proces čestice izgleda kao na slici \ref{fig:velocity}. Analizirajući ažuriranje brzine, vidimo da je prvi deo uticaj prethodne brzine čestice. To znači da čestica veruje da je na dobrom putu i kreće se inercijalno. Drugi deo zavisi od trenutne pozicije čestice i njene najbolje pozicije do sada, odnosno od kognitivne komponente brzine. Treći deo se oslanja na udaljenost trenutne pozicije čestice i globalno najbolje pozicije u roju, odnosno na socijalnu komponentu brzine \cite{wang2018particle}. 
+U svakoj generaciji, iterativni proces čestice izgleda kao na slici \ref{fig:velocity}. Analizirajući ažuriranje brzine vidimo da je prvi deo uticaj prethodne brzine čestice. To znači da čestica veruje da je na dobrom putu i kreće se inercijalno. Drugi deo zavisi od trenutne pozicije čestice i njene najbolje pozicije do sada, odnosno od kognitivne komponente brzine. Treći deo se oslanja na udaljenost trenutne pozicije čestice i globalno najbolje pozicije u roju, odnosno na socijalnu komponentu brzine \cite{wang2018particle}. 
 
 \subsection{Algoritmi gbest i lbest PSO}
 \label{subsec:podnaslov1}
 
-U slučaju globalno najboljeg PSO algoritma (eng. Global Best - \textit{gbest}), susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. U topologiji zvezde socijalna komponenta brzine čestice predstavlja informaciju dobijenu od svih čestica u roju. 
+U slučaju globalno najboljeg PSO algoritma (eng. Global Best - \textit{gbest}) susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. 
 
-Lokalno najbolji PSO (eng. Local Best - \textit{lbest}) koristi topologiju prstena, gde svaka čestica ima određeni broj suseda. Socijalna komponenta predstavlja informaciju koju razmenjuju susedi čestice. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
+Lokalno najbolji PSO (eng. Local Best - \textit{lbest}) koristi topologiju prstena, gde svaka čestica ima određeni broj suseda. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
 
-Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost.Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate \cite{engelbrecht2007computational}.
+Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost. Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate \cite{engelbrecht2007computational}.
 
-Važno je napomenuti da kod osnovnog PSO algoritma čestice nisu povezane. Razvijene su mnoge strategije na osnovu kojih se bira susedstvo, kao što je razdaljina u prostoru. Međutim, preferirano rešenje je odabir na osnovu indeksa, i za to postoje dva glavna razloga:
+Razvijene su mnoge strategije na osnovu kojih se bira susedstvo, kao što je razdaljina u prostoru. Međutim, preferirano rešenje je odabir na osnovu indeksa, i za to postoje dva glavna razloga:
 \begin{enumerate}
     \item Za pristupe koji podrazumevaju računanje udaljenosti između čestica, potrebno je naći Euklidsko rastojanje svih parova čestica, a to ima veliku složenost ($(n_s)^2$).
     \item Lakše je prosleđivanje informacije o dobrim rešenjima svim česticama, nezavisno od njihove lokacije u prostoru pretrage.
@@ -344,7 +344,7 @@ Različite topologije uticaja su razvijane i istraživane za potrebe PSO algorit
 \begin{itemize}
     \item \textbf{Zvezda}: Svaka čestica komunicira sa svakom drugom česticom čime informacija o trenutno najboljoj čestici dolazi veoma brzo. Stoga, postoji mogućnost glavljenja u lokalnom minimunu. Prva implementacija PSO je koristila zvezdanu strukturu (gbest).
     \item \textbf{Prsten}: Svaka čestica komunicira sa svojih N suseda. Kada je N=2 struktura izgleda kao na slici \ref{fig:ZvezdaPrstenTocak}b. Razlčita susedstva se preklapaju tako da informacije teku sporije. Konvergencija je sporija i pokriva se veći prostor pretrage.
-    \item \textbf{Točak}:Jedna čestica predstavlja žarište i sve informacije se prenose preko te čestice.
+    \item \textbf{Točak}: Jedna čestica predstavlja žarište i sve informacije se prenose preko te čestice.
     \item \textbf{Piramida}: Formira se trodimenzioni žičani okvir.
     \item \textbf{Četiri klastera}: Četiri klastera povezani svaki sa svakim, dok se unutar jednog nalaze čestice povezane sa četiri suseda.
     \item \textbf{Fon Nojmanova}: Socijalna struktura koja se u određenim slucajevima pokazala mnogo bolje nego druge strukture.
@@ -370,9 +370,8 @@ Kennedy i Mandes istraživačkim radom došli su do zaključka da je prilagodlji
 
 
 \section{Zaključak}
-U ovom radu predstavljeni su osnovni koncepti optimizacione tehnike zasnovane na roju cestica.Opisani su glavni algoritmi, značaj i varijacije parametara, primene ove tehnike kao i različite populacione strukture čijim menjanjem, kao i menjanjem parametara, mozemo da podešavamo i prilagođavamo ovu populacionu tehniku različitim problemima.
 
-PSO algoritam je popularnost stekao svojom jednostavnošću. Mnogi istraživači su upoređivali PSO i druge tehnike na istom skupu problema i dosli do zaključka da PSO postize bolje rezultate na nekim problemima od ostalih što čini da postaje zanimljiv za dalje istraživanje i unapređivanje. Ima sličnosti sa EA tako da se integrise sa različitim algoritmima kako bi ih poboljšao.Pored toga, PSO je primenljiv i na neograničene i na ograničene probleme.
+PSO algoritam je popularnost stekao svojom jednostavnošću. Mnogi istraživači su upoređivali PSO i druge tehnike na istom skupu problema i došli do zaključka da PSO postize bolje rezultate na nekim problemima od ostalih što čini da postaje zanimljiv za dalje istraživanje i unapređivanje. Integriše sa različitim algoritmima kako bi ih poboljšao. Pored toga, PSO je primenljiv i na neograničene i na ograničene probleme.
 
 Ova tehnika ima i svoja ograničenja. Naime, iako ima mogućnost da brzo konvergira, ima i tendenciju da luta i usporava dok se približava optimumu. Svakako, trebalo bi imati u vidu njegova ogranicenja kao i dobre strane.
 
