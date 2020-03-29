@@ -70,7 +70,7 @@
 \abstract{ Kennedy i Eberhart (2001): \\
 \say{... gledamo u paradigmu koja je u svom začeću, puna potencijala i novih ideja i novih perspektiva... Istraživači u mnogim zemljama eksperimentišu sa rojevima čestica... Mnoga pitanja koja su postavljena još uvek nisu dobila dobar odgovor \cite{poli2007particle}}
 
-U ovom radu predstavljeni su osnovni koncepti optimizacione tehnike zasnovane na roju cestica. Opisani su glavni algoritmi, značaj i varijacije parametara, primene ove tehnike kao i različite populacione strukture čijim menjanjem, kao i menjanjem parametara, možemo da podešavamo i prilagođavamo ovu populacionu tehniku različitim problemima. 
+U ovom radu predstavljeni su osnovni koncepti optimizacione tehnike zasnovane na roju čestica. Opisani su glavni algoritmi, značaj i varijacije parametara, primene ove tehnike kao i različite populacione strukture čijim menjanjem, kao i menjanjem parametara, možemo da podešavamo i prilagođavamo ovu populacionu tehniku različitim problemima. 
 }
 
 \tableofcontents
@@ -334,9 +334,9 @@ U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rast
 \section{Topologije uticaja}
 
 
-Na PSO direktono utiče raznolikost populacije kao i socijalna interakcija među česticama. Stoga, dizajniranje razlicitih struktura populacije predstavlja bitnu tačku istraživanja kako bi se došlo do što boljih performansi.
+Na PSO direktno utiče raznolikost populacije kao i socijalna interakcija među česticama. Stoga, dizajniranje razlicitih struktura populacije predstavlja bitnu tačku istraživanja kako bi se došlo do što boljih performansi.
 
-Čestice u roju uče jedne od drugih tako što razmenjuju informacije o uspešnosti svake čestice i na osnovu dobijenih saznanja postaju više slicne svojim boljim susedima. Veći utcaj na čestice imaće sused koji je više uspešan od suseda koji je manje uspešan. Kako se informacije kreću unutar određene strukture populacije govori nam stepen povezanosti čestica, broj klastera i najmanja razdaljina između čestica. Velika povezanost čestica utiče na brzo širenje informacija, što u pogledu optimizacije dovodi do brže konvergencije ka rešenju po cenu zaglavljivanja u lokalnom minimumu. Suprotno, ako čestice nisu dobro povezane postojaće više klastera(grupacija), informacije se sporije razmenjuju i može se desiti da se ne pokrije ceo prostor pretrage.
+Čestice u roju uče jedne od drugih tako što razmenjuju informacije o uspešnosti svake čestice i na osnovu dobijenih saznanja postaju više slične svojim boljim susedima. Veći utcaj na čestice imaće sused koji je više uspešan od suseda koji je manje uspešan. Kako se informacije kreću unutar određene strukture populacije govori nam stepen povezanosti čestica, broj klastera i najmanja razdaljina između čestica. Velika povezanost čestica utiče na brzo širenje informacija, što u pogledu optimizacije dovodi do brže konvergencije ka rešenju po cenu zaglavljivanja u lokalnom minimumu. Suprotno, ako čestice nisu dobro povezane postojaće više klastera(grupacija), informacije se sporije razmenjuju i može se desiti da se ne pokrije ceo prostor pretrage.
 
 Različite topologije uticaja su razvijane i istraživane za potrebe PSO algoritma a one koje su se najbolje pokazale su:
 \begin{itemize}
@@ -345,7 +345,7 @@ Različite topologije uticaja su razvijane i istraživane za potrebe PSO algorit
     \item \textbf{Točak}: Jedna čestica predstavlja žarište i sve informacije se prenose preko te čestice.
     \item \textbf{Piramida}: Formira se trodimenzioni žičani okvir.
     \item \textbf{Četiri klastera}: Četiri klastera povezani svaki sa svakim, dok se unutar jednog nalaze čestice povezane sa četiri suseda.
-    \item \textbf{Fon Nojmanova}: Socijalna struktura koja se u određenim slucajevima pokazala mnogo bolje nego druge strukture.
+    \item \textbf{Fon Nojmanova}: Socijalna struktura gde su čestice povezane u rešetku. U određenim slučajevima pokazala se mnogo bolje nego druge strukture.
 \end{itemize}
 \begin{figure}[htp]
     \centering
@@ -366,12 +366,11 @@ Različite topologije uticaja su razvijane i istraživane za potrebe PSO algorit
 Odgovor na pitanje koja je topologija najbolja za sve probleme, jeste da ne postoji takva.
 Kennedy i Mandes istraživačkim radom došli su do zaključka da je prilagodljivost zvezde, prstena i Fon Nojman topologija najbolja.Generalno, potpuno povezane strukture najbolje rade za unimodalne probleme i obrnuto.
 
-
 \section{Zaključak}
 
 PSO algoritam je popularnost stekao svojom jednostavnošću. Mnogi istraživači su upoređivali PSO i druge tehnike na istom skupu problema i došli do zaključka da PSO  na nekim problemima postiže bolje rezultate, što čini da postaje zanimljiv za dalje istraživanje i unapređivanje. Integriše sa različitim algoritmima kako bi ih poboljšao. Pored toga, PSO je primenljiv i na neograničene i na ograničene probleme.
 
-Ova tehnika ima i svoja ograničenja. Naime, iako ima mogućnost da brzo konvergira, ima i tendenciju da luta i usporava dok se približava optimumu. Svakako, trebalo bi imati u vidu njegova ogranicenja kao i dobre strane.
+Ova tehnika ima i svoja ograničenja. Naime, iako ima mogućnost da brzo konvergira, ima i tendenciju da luta i usporava dok se približava optimumu. Svakako, trebalo bi imati u vidu njegova ograničenja kao i dobre strane.
 
 
 \addcontentsline{toc}{section}{Literatura}
