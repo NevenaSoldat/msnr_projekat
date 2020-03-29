@@ -220,7 +220,7 @@ Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u to
 \end{itemize}
 
 \section{Primene}
-Postoje različiti načini primene PSO algoritma. Neki su opštiji, dok su ostali specifičniji. Pod opštim se misli na pristup koji obuhvata širok opseg specifičnih primena. A specifične primene podrazumevaju primenu na jasno definisan problem \cite{eberhart2001swarm}.
+Postoje različiti načini primene PSO algoritma. Neki od njih obuhvataju širi opseg specifičnih primena dok drugi podrazumevaju primenu na jasno definisan problem \cite{eberhart2001swarm}.
 Neke od primena su sledeće:
 \begin{itemize}
     \item U dizajnu antena – kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…
@@ -229,8 +229,7 @@ Neke od primena su sledeće:
     \item Kombinatorni problemi- rešavanje problema trgovačkog putnika, optimizacija puta…
     \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
     \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
-    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
-    \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
+   
      
    
 \end{itemize}
@@ -240,13 +239,13 @@ Neke od primena su sledeće:
 
 
 Topologije distributivnih mreža su dugi niz godina bile sa ograničenim mogućnostima promene strukture, zbog niskog stepena automatizacije i ograničenih mogućnosti daljinskog upravljanja. 
-Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan, diskretan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}. Pored toga, uvažavanjem tehničkih ograničenja i različitih optimizacionih kriterijuma, određivanje optimalnog uklopnog stanja mreže se značajno usložnjava.
+Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan, diskretan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}.
 
 \textbf{Cilj} rekonfiguracije i planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.\\
 
 Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na optimizaciji rojem čestica sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži. 
 
-\vspace{5mm} 
+\vspace{15mm} 
 
 \begin{flushleft}
 \textbf{Formulisanje problema:} 
@@ -285,20 +284,20 @@ Problem je formulisan sa dve funkcije cilja. Prva funkcija cilja odnosi se na gu
 
 Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice u d–dimenzionalnom prostoru rešenja izračunata u k+1-oj iteraciji u opštem slučaju nije celi broj, što znači da se PSO algoritam ne može primenjivati za rešavanje diskretnih optimizacionih problema. U tu svrhu 1997. godine Eberhart i Kennedy predstavili su binarnu verziju PSO algoritma, koja predstavlja modifikaciju PSO algoritma za rešavanje diskretnih optimizacionih problema. Modifikacija se ogleda kroz normalizaciju brzine čestice na datoj poziciji u intervalu [0, 1].
 
-\vspace{10mm} 
+\vspace{5mm} 
 
 \begin{flushleft}
 \textbf{Kodiranje čestica:} 
 \end{flushleft}
 
-Šema kodiranja čestica kodira topologiju mreže, odnosno, transformatorske stanice i putanje fidera. Koriste se dve vrste šema kodiranja- direktno i indirektno. Najčešće korišćeno kodiranje je direktno međutim slabost takvog pristupa je potencijalno dobijanje upetljanih mreža. Da bi se to izbeglo, koristi se hibridni pristup direktnog i indirektnog kodiranja, gde čestice sadrže dva segmenta.
+Šema kodiranja čestica kodira topologiju mreže, odnosno, transformatorske stanice i putanje fidera. Najčešće korišćeno kodiranje je direktno međutim slabost takvog pristupa je potencijalno dobijanje upetljanih mreža. Da bi se to izbeglo, koristi se hibridni pristup direktnog i indirektnog kodiranja, gde čestice sadrže dva segmenta.
 
 \vspace{5mm} 
 
 \begin{itemize}
 \item \textbf{Segment fidera} – Sastoji se od podsegmenta “pristrasnosti” čvora vrednosti $\rho$,  $\rho \in (-1,1)$, odnosno, indirektna informacija koja dekodiranjem daje mrežnu topologiju i drugi podsegment sadrži broj fidera (\(N_{Fi}\) za transformatorske podstanice i) za svaku podstanicu, što je direktna informacija.
 
-\item \textbf{Segment trafostanica} – Sadrži direktne informacije o lakaciji svake transformatorske stanice \(X_{i}\) i \(Y_{i}\) koordinate transformatorskih stanica u dvodimenzionoj ravni).
+\item \textbf{Segment trafostanica} – Sadrži direktne informacije o lokacijama svake transformatorske stanice  (\(X_{i}\) i \(Y_{i}\), koordinate transformatorskih stanica u dvodimenzionoj ravni).
 \end{itemize}
 
 \begin{figure}[htp]
@@ -312,7 +311,7 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
 \textbf{Šema dekodiranja:} 
 \end{flushleft}
 
-U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti (D) između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova \cite{inproceedings}.\\
+U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova \cite{inproceedings}.\\
 \\ 
 \textbf{Pseudokod:} \\ 
 \textbf{Početak:} /*Inicijalizacija - podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
@@ -364,13 +363,13 @@ Različite topologije uticaja su razvijane i istraživane za potrebe PSO algorit
     \caption{Piramida, četiri klastera i Fon Nojman}
     \label{fig:PiramidaCetiriKlasteraFonNojman}
 \end{figure}
-Odgovor na pitanje koja je topologija najbolja za sve probleme jeste da ne postoji takva.
+Odgovor na pitanje koja je topologija najbolja za sve probleme, jeste da ne postoji takva.
 Kennedy i Mandes istraživačkim radom došli su do zaključka da je prilagodljivost zvezde, prstena i Fon Nojman topologija najbolja.Generalno, potpuno povezane strukture najbolje rade za unimodalne probleme i obrnuto.
 
 
 \section{Zaključak}
 
-PSO algoritam je popularnost stekao svojom jednostavnošću. Mnogi istraživači su upoređivali PSO i druge tehnike na istom skupu problema i došli do zaključka da PSO postize bolje rezultate na nekim problemima od ostalih što čini da postaje zanimljiv za dalje istraživanje i unapređivanje. Integriše sa različitim algoritmima kako bi ih poboljšao. Pored toga, PSO je primenljiv i na neograničene i na ograničene probleme.
+PSO algoritam je popularnost stekao svojom jednostavnošću. Mnogi istraživači su upoređivali PSO i druge tehnike na istom skupu problema i došli do zaključka da PSO  na nekim problemima postiže bolje rezultate, što čini da postaje zanimljiv za dalje istraživanje i unapređivanje. Integriše sa različitim algoritmima kako bi ih poboljšao. Pored toga, PSO je primenljiv i na neograničene i na ograničene probleme.
 
 Ova tehnika ima i svoja ograničenja. Naime, iako ima mogućnost da brzo konvergira, ima i tendenciju da luta i usporava dok se približava optimumu. Svakako, trebalo bi imati u vidu njegova ogranicenja kao i dobre strane.
 
