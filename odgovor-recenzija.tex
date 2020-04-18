@@ -1,1 +1,347 @@
+
+
+ % !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper]{report}
+
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8x,utf8]{inputenc} % make weird characters work
+\usepackage[serbian]{babel}
+%\usepackage[english,serbianc]{babel}
+\usepackage{amssymb}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+\newcommand{\odgovor}[1]{\textcolor{blue}{#1}}
+
+\begin{document}
+
+\title{Optimizacija rojem čestica\\ \small{Nevena Soldat, Milena Kurtić, Tijana Živković, Ana Miloradović}}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Uputstva}
+\emph{Prilikom predavanja odgovora na recenziju, obrišite ovo poglavlje.}
+
+Neophodno je odgovoriti na sve zamerke koje su navedene u okviru recenzija. Svaki odgovor pišete u okviru okruženja \verb"\odgovor", \odgovor{kako bi vaši odgovori bili lakše uočljivi.} 
+\begin{enumerate}
+
+\item Odgovor treba da sadrži na koji način ste izmenili rad da bi adresirali problem koji je recenzent naveo. Na primer, to može biti neka dodata rečenica ili dodat pasus. Ukoliko je u pitanju kraći tekst onda ga možete navesti direktno u ovom dokumentu, ukoliko je u pitanju duži tekst, onda navedete samo na kojoj strani i gde tačno se taj novi tekst nalazi. Ukoliko je izmenjeno ime nekog poglavlja, navedite na koji način je izmenjeno, i slično, u zavisnosti od izmena koje ste napravili. 
+
+\item Ukoliko ništa niste izmenili povodom neke zamerke, detaljno obrazložite zašto zahtev recenzenta nije uvažen.
+
+\item Ukoliko ste napravili i neke izmene koje recenzenti nisu tražili, njih navedite u poslednjem poglavlju tj u poglavlju Dodatne izmene.
+\end{enumerate}
+
+Za svakog recenzenta dodajte ocenu od 1 do 5 koja označava koliko vam je recenzija bila korisna, odnosno koliko vam je pomogla da unapredite rad. Ocena 1 označava da vam recenzija nije bila korisna, ocena 5 označava da vam je recenzija bila veoma korisna. 
+
+NAPOMENA: Recenzije ce biti ocenjene nezavisno od vaših ocena. Na osnovu recenzije ja znam da li je ona korisna ili ne, pa na taj način vama idu negativni poeni ukoliko kažete da je korisno nešto što nije korisno. Vašim kolegama šteti da kažete da im je recenzija korisna jer će misliti da su je dobro uradili, iako to zapravo nisu. Isto važi i na drugu stranu, tj nemojte reći da nije korisno ono što jeste korisno. Prema tome, trudite se da budete objektivni. 
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+Rad nas upoznaje sa osnovama optimizacije rojem čestica. Objasnivši osnovni algoritam, autorke predstavljaju varijante algoritma i naglašavaju kako topologija samog roja utiče na brzinu konvergencije i eksploraciju, kao i do kojih problema može doći i kako kontrolisati promenljive ili izmeniti formule da se oni izbegnu. Kroz primer vidimo kako se vrednosti kodiraju i dekodiraju da bi bile upotrebljive u algoritmu.
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+\begin{enumerate}
+    \item \textbf{Sekcija 2.3 Algoritmi gbest i lbest PSO} Deo o topologijama je zbunjujuć, iako je slično objašnjeno i u izvoru.
+    \begin{enumerate}
+        \item U \textit{gbest}-u ceo roj ima potpuno povezanu ili globalnu topologiju. Neki izvori navode topologiju zvezde ne kao topologiju celog roja, već kao topologiju suseda tj. topologiju posmatranu iz perspektive jedne čestice.
+        \item Konvencionalno, topologija prstena je kada svaki čvor ima $N=2$ suseda. U slučaju \textit{lbest}, čvorovi su ponekad povezani i sa susedima svojih suseda. Možda bi bilo najjasnije napisati da se koristi topologija koja se može svesti na topologiju prstena ili bliska topologiji prstena, da se čitalac ne bi zbunio kakva je to topologija prstena za $N\neq 2$ .
+    \end{enumerate}
+    Iste primedbe važe i za kasniju sekciju koja se bavi isključivo topologijama.
+    
+    
+    \odgovor{Agoritmi gbest i lbest u okviru sekcije 2.3 su bolje objašnjeni. Kako ne bi bilo zbunjujuće, topologije prstena i zvezde se ne pominju. } 
+    
+    
+    
+    \item \textbf{Sekcija 3.3 Koeficijent suženja} $\phi_1$ i $\phi_2$ se nazivaju konstantama u tekstu, iako zavise od $r_1$ i $r_2$ koje se biraju nasumično.
+    
+    \item \textbf{Sekcija 3.4 Modeli brzina} Tvrđenja koja navode da su se neke varijante algoritma pokazale boljim od drugih nisu potkrepljena.
+    
+    \item \textbf{Sekcija 5 Topologija uticaja} U ovoj sekciji je puno ponavljanja stvari koje su već objašnjene ranije u radu, uključujući to kako susedi utiču na pomeranje čestice, eksploataciju, eksploraciju, i neke od topologija. Takođe, cela sekcija je navedena bez referenci, iako se u tekstu pominju naučnici i njihovi zaključci.
+    
+    \item \textbf{Zaključak} Ceo prvi pasus u zaključku diskutuje stvari koje nisu zapravo pomenute ili eksplicitno naglašene u toku samog rada. Rad nije poredio PSO i druge tehnike, niti pričao o mogućnosti pravljenja hibridnih metoda. Iako je lako zaključiti iz rada, on ipak nije eksplicitno pomenuo ni da je algoritam primenljiv i na kontinualnim i na diskretnim domenima. Sve ovo se, ipak, pominje u zaključku.
+\end{enumerate}
+
+\section{Sitne primedbe}
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+\begin{enumerate}
+    \item \textbf{Sekcija 1.1 Kratak istorijat} Jedan od brojeva koji referišu na fusnote je naveden sa razmakom, a ostali bez.
+    
+    \odgovor{Obrisan je razmak između reči i broja koji referiše na fusnotu.}
+    
+    \item \textbf{Sekcija 2 Algoritam za optimizaciju rojem čestica} \begin{enumerate}
+        \item U pretposlednjoj rečenici u ovoj sekciji nedostaje zarez posle "Takođe".
+        
+        \odgovor{Dodat je zarez nakon ,,Takođe``.}
+        
+        \item Kada se opisuje kretanje pčela, govori se o globalno najboljoj poziciji. Mislim da bi bilo dobro ovde naglasiti da se misli na \textit{za sada pronađenu} globalno najmanju poziciju, jer bi jasnije objašnjavalo kako funkcioniše sam algoritam.
+        
+        \odgovor{Detaljan opis algoritma sledi u narednoj sekciji, pčele su slikovit uvid. Dodato je da se radi o najboljoj lokalnoj i globalnoj poziciji u određenom trenutku.}
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 2.1 Originalni PSO}
+    \begin{enumerate}
+        \item Nedostaje objašnjenje uloge promenljivih $r_1$ i $r_2$ u formuli.
+        
+        \odgovor{Pisalo je da se biraju nasumično, dodato je da predstavljaju stohastičku komponentu algoritma.}
+        \item U pseudokodu mislim da bi bilo u redu da roj bude $n$-dimenzioni umesto $n_s$-dimenzioni. Čitkije je, a kako se u tekstu $n$ ne koristi za nešto drugo, mislim da nije problem. Ako je to da čitalac ne bi pomešao sa dimenzijama problema, može samo to da se naglasi.
+        
+        
+        \odgovor{Nije izmenenjeno, ne stvara nikakvu konfuziju.}
+        \item Nije naveden ni jedan izvor za ovu sekciju. Obrađuje se u izvoru [3], tako da se može on referencirati.
+        
+        \odgovor{Nije izmenjeno, sekcija je napisana na osnovu više izvora, oznake su karakteristične za ovaj rad.}
+        
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 2.3 Algoritmi gbest i lbest PSO} Poslednji pasus je nejasan. Pretpostavljam da je trebalo da piše: ''Zašto nije dobro birati susedstvo na osnovu \st{udaljenosti} \textit{indeksa}?"
+
+    \odgovor{Izmenjeno je tako da bude jasnije. Misli se na biranje susedstva na osnovu udaljenosti. Može se desiti da čestice koje su slične u Euklidskom prostoru ne budu blizu.}
+    
+    \item \textbf{Sekcija 3.1 Smanjenje brzina} Postoji rečenica: "\textbf{Dok} veoma male vrednosti mogu da povećaju broj vremenskih koraka do nalaženja optimalne vrednosti, \textbf{tako} veoma velike vrednosti..."\ Nema smisla kombinovati nezavisnu i zavisnu rečenicu sa \textit{dok} i \textit{tako}, ima više smisla iskoristiti \textit{kako-tako} ili samo obrisati \textit{tako}.
+    
+    \item \textbf{Sekcija 3.2 Inercijalna težina}
+    \begin{enumerate}
+        \item Pasus počinje sa "Nastala je da bi..."\ nadovezujući se na naslov, ali mislim da bi bilo bolje da bude potpuna rečenica.
+        \item Da li $w$ služi da se baš eliminiše smanjenje brzina, ili da se ono postigne bez neželjenih efekata?
+        \item "...dok male vrednosti \st{podstice} \textit{podstiču} lokalnu eksploataciju."
+        \item Ovde se prvi put javlja ova greška, ali važi za ceo rad. U nekim delovima su veći razmaci između pasusa u nekim manji. Ovde se javljaju pre matematičke formule, verovatno jer su autori stavili eksplicitni novi red, a formula ga takođe generiše pre sebe. Sličan problem se desio na par mesta sa razmacima između pasusa, verovatno zbog sledećeg:
+        \begin{verbatim}
+            Ovo je neki pasus.\\
+            Ovo je pasus sa malim razmakom između.\\
+            
+            Ovo je pasus sa većim razmakom između.\\
+        \end{verbatim}
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 3.3 Koeficijent suženja}
+    \begin{enumerate}
+        \item ''Clerc je razvio..." Pošto se Clerc ne navodi nigde više u tekstu, mislim da treba navesti ko je u fusnoti ili nekako napomenuti uopšte da je u pitanju osoba.
+        \item Možda bi formula bila jasnija ako se ne uvode $\phi_1$ i $\phi_2$, već se samo uvede $\phi=c_1r_1+c_2r_2$. Tako bi se na prvi pogled videlo da je formula ista kao ona odozgo, samo sa $\chi$.
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 3.4 Modeli brzina}
+    \begin{enumerate}
+        \item "...kognitivni model isključuje socijalnu komponentu iz jednačine,može..." - Nedostaje razmak posle zareza.
+        \item Poređenje sa nostalgijom je zbunjujuće jer se navodi pre nego što se uopšte objasni o čemu se radi. Možda prvo objasniti da se čestica vraća u stare najbolje tačke, pa onda navesti analogiju?
+        \item Korišćenje neprevedenih engleskih naziva nije konzistentno sa ostatkom rada u kome je sva terminologija prevedena na srpski ili eventualno navedeno da će se koristiti engleska skraćenica.
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 4 Primene}
+    \begin{enumerate}
+        \item Fali razmak pre povlake nakon biomedicine.
+        \item "Topologije distributivnih mreža su dugi niz godina \st{bile sa ogranicenim mogucnostima} \textit{imale ograničene mogućnosti} promene strukture..."
+    \end{enumerate}
+    
+    \item \textbf{Sekcija 5 Topologija uticaja}
+    \begin{enumerate}
+        \item Nedostaje razmak pre zagrade u delu: "...postojaće više klastera(grupacija)..."
+        \item Nedostaje razmak nakon kraja rečenice koja se završava sa: "...i Fon Nojman topologija najbolja."
+    \end{enumerate}
+    
+\end{enumerate}
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+Da, rad objašnjava osnovni algoritam, njegove varijacije, primenu, kao i sve bitne napomene o tome šta može uticati na njegove performanse. Sigurna sam da je ova tema mnogo dublja, ali mislim da rad predstavlja odličnu osnovu za nekoga ko se prvi put sa njom susreće.
+
+\item Da li je nešto važno propušteno?\\
+Ne, sve je navedeno.
+
+\item Da li ima suštinskih grešaka i propusta?\\
+Sve su navedene iznad.
+
+\item Da li je naslov rada dobro izabran?\\
+Da. Naslov je mogao da bude i "Uvod u optimizaciju rojem čestica"\ ili nešto slično, ali mislim da je i ovo sasvim dovoljno da neko, znajući da je u pitanju seminarski, sam zaključi kakva je priroda rada.
+
+\item Da li sažetak sadrži prave podatke o radu?\\
+Da, sažetak ukratko najavljuje sadržinu celog rada.
+
+\item Da li je rad lak-težak za čitanje?\\
+Rad je većim delom lepo napisan i lak za čitanje. Slike su lepo odabrane i dosta pomažu u razumevanju samog teksta dok se čita.
+
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+Za razumevanje teksta je potrebno predznanje, potrebno je da čitalac vlada nekom osnovnom terminologijom vezanom za veštačku inteligenciju ili optimizacione probleme, kao i da zna da barata vektorima. Čitaocu koji ima više iskustva sa računarskom inteligencijom će možda biti lakše da shvati rad poređenjem sa svojim prethodnim znanjem, ali mislim da to nije suštinski neophodno.
+
+\item Da li je u radu navedena odgovarajuća literatura?\\
+Literatura je odgovarajuća, ali imam par napomena što se navođenja tiče.\\
+Negde su navedeni meseci kada je naučni rad publikovan, negde ne, i to su negde navedeni brojevima, negde slovima. Mislim da bi zbog konzistentnosti bilo najbolje ostaviti samo godine.\\
+Takođe, bibtex je generisao neke delove referenci na engleskom (online at, pages) automatski, što se može ispraviti korišćenjem sledećih paketa:
+
+\begin{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage[english,serbian]{babel}
+\usepackage[fixlanguage]{babelbib}
+\end{verbatim}
+
+I navođenjem literature na sledeći način:
+
+\begin{verbatim}
+\addcontentsline{toc}{section}{Literatura}
+\appendix
+\selectbiblanguage{serbian}
+\bibliographystyle{babunsrt-lf}
+\bibliography{references}
+\end{verbatim}
+
+
+\odgovor{Ispravljeno za mesece. Obrisano online at.}
+
+\item Da li su u radu reference korektno navedene?\\
+Da. Sve što je navedeno u literaturi referencira se iz teksta.
+
+\item Da li je struktura rada adekvatna?\\
+Da, rad sadrži sve potrebne elemente seminarskog rada. Redosled uvođenja koncepata je smislen, lako je razumljiv, i sve se nadovezuje jedno na drugo.
+
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+Ne, fail tabela. Takođe, za kodove nije iskorišćen paket listings, kao što piše da mora u prezentaciji sa predavanja.
+
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+Slike su funkcionalne i adekvatne, tabele nema.
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+% b) veoma upućeni u oblast
+% c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+Malo sam upućena u oblast, obrađivali smo je na jednom od kurseva i čitala sam o njoj iz predloženog udžbenika, ali ništa van toga.
+
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+{
+U radu su prikazani osnovni koncepti optimizacione tehnike zasnovane na rojevima čestica. Opisani su glavni algoritmi, značaj i varijacije parametara, primene ove tehnike kao i različite populacione strukture čijim menjanjem, kao i menjanjem parametara, možemo da podešavamo i prilagodjavamo ovu populacionu tehniku različitim problemima.
+
+Na samom početku, autori nas upoznaju sa osnovnim terminima optimizacije rojevima čestica, osnovnom varijantom algoritma I njegovim komponentama. Glavna ideja metoda je, da po uzoru na posmatrane grupacije životinja (price, ribe, mačke…), prilikom traganja za optimalnim rešenjem pored globalno najboljeg rešenja se uzima u obzir I lokalno odnosno ono koje je najbolje za svaku jedinku pojedinačno. Pri napredovanju kroz prostor, u obzir se uzimaju prethodna vrednost brzine kretanja, kognitivna I socijalna komponenta. Varijante gbest I lbest počivaju na variranju broja suseda koje jedna čestica uzima u obzir pri donošenju odluka, dok ostale varijacije počivaju na variranju komponente brzine, pa tako imamo čitav niz različitih modela.  Potom je nakon nabrojanih primena, algoritam detaljno objasnjen na primeru rešavanja problema rekonfiguracije i planiranja distributivne mreže  koji predstavlja optimizaciju ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.
+
+Kako na optimizaciju rojem čestica direktno utiče raznolikost populacije kao i socijalna interakcija medu česticama, dizajniranje različitih struktura populacije
+predstavlja bitnu tačku istraživanja kako bi se došlo do što boljih performansi. Uzevši u obzir to, kao i mogućnosti povezivanja čestica unutar roja, razvijeno je više modela organizacije PSO-a: zvezda, prsten, točak, piramida... 
+}
+
+\section{Krupne primedbe i sugestije}
+{ Obzirom da se radi o optimizacionoj metodi, na početku rada je trebalo čitaoca upoznati sa opštim pojmom optimizacije, jer izostavljanje toga može kod čitaoca izazvati poteškoće pri čitanju i razumevanju ostatka.}
+{Takodje, rezime ne daje dovoljno opširan i dubok pregled onoga što je prikazano u radu. }
+
+\section{Sitne primedbe}
+{Osim nekoliko štamparskih grešaka, u radu nema drugih propusta sintaksičke prirode.}
+
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+{Rad dobro odgovora na zadatu temu. Opisan je problem, ideja, varijante problema, implementacija i sama primena.}
+\item Da li je nešto važno propušteno?\\
+{Detaljniji opis pojma optimizacije.}
+\item Da li ima suštinskih grešaka i propusta?\\
+{Ne.}
+\item Da li je naslov rada dobro izabran?\\ 
+{ Jeste. }
+\item Da li sažetak sadrži prave podatke o radu?\\ 
+{Sažetak nije dovoljno informativan, trebalo bi da sadrži konkretnije podatke o radu. }
+\item Da li je rad lak-težak za čitanje?\\ 
+{Rad je napisan tako da je čitanje lako, čak i onima koji nisu najbolje upoznati sa datom tematikom.}
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+{Dodatno predznanje olakšava tumačenje rada, ali za samo razumevanje nije ključcno, autori su se potrudili da detaljno opišu svaki pojam vezan za datu temu.}
+\item Da li je u radu navedena odgovarajuća literatura?\\ 
+{Da, sva navedena literatura je opsežna i relevantna. }
+\item Da li su u radu reference korektno navedene?\\ 
+{Da.}
+\item Da li je struktura rada adekvatna?\\
+{Da.}
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+{Da.}
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+{Da, kroz slike su na veoma jednostavan i informativan način prikazani brojni aspekti algoritma.}
+\end{enumerate}
+
+\section{Ocenite sebe}
+{Dosta upućen u samu oblast, kako zbog pohadjanja kursa Računarske inteligencije čiji je sastavni deo izučavanje rojeva, tako i zbog ličnih interesovanja na ovom polju.}
+
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+Rad opisuje jedan od mnogih primera uzimanja ideja iz prirode i njenim prilagođavanjem domenima problema koji nam mogu biti od interesa. U ovom slučaju, 
+načinu funkcionsianja velikih rojeva jedinki. U tim slučajevima, posmatranjem jednog takvog roja, uzmimo pčele, dobija se utisak kolektivne svesti, 
+gde jedinke operišu kao deo većeg organizma. Posmatranjem ovakvih intriga, došlo se do prve verzije algoritma, u kojem je jedan takav sistem opisan 
+međusobnom komunikacijom jedinki, gde se nagoni jedne jedinke dele na kognitivne i socijalne. Na primeru pčela, kognitivni nagon jedne pčele bio bi  
+kretanje ka mestu gde je pronašla najveću gustinu polena, uz to osmatrajući svoju okolinu u potrazi za boljim mestom i komunicirajući ostatku roja o tome, 
+dok bi njen socijalni nagon predstavljao reagovanje na ostatak roja i kretanjem ka mestima sa većom gustinom polena. Težinski zbir ovakvih akcija 
+predstavljao bi vektor kretanja jedinke, i roj bi konvergirao ka mestu najveće gustine polena. U radu su takođe opisane realne primene algoritama 
+kao i njihove varijacije, sitni detalji i problemi sa kojima se možemo susresti, kao i ideje za rešavanje istih. 
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+Kog radova ovakvog tipa, koji su deo fakultetskog projekta i mahom su informativnog karaktera, tj. ne zalaze u dubinu materije, više smisla ima 
+pružiti čitaocu intuitivni način gledanja na temu, zaintrigirati ga za dalje samostalno istraživanje. Ovaj rad pruža tu intuitivnu komponentu, ali 
+takođe sadrži delove koji mogu biti višak u očima čitaoca, stoga moja jedina sugestija bila bi fokusirati se na pričanju priče o algoritmu, 
+stvaranja intuicije sa izbegavanjem pominjanja matematičkih formula ili stručnih termina u samom početku, a kasnije, sa već stvorenom intuicijom postepeno 
+ulaziti dublje u temu.
+
+\section{Sitne primedbe}
+Minorne primedbe jedino na prikazivanje opisanih algoritama, kao prvo korišćenjem algoritama sa realnim primerima umesto navođenja njihovih "klot" verzija, 
+i stvar estetike - pisanje pseudokoda u stilu programskog koda, dakle izbegavanje korišćenja matematičkih notacija, nazubljivanje i obavezno korišćenje 
+monospace fonta. Ovo zadnje je naravno lična preferenca.
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\ Da, na lep način je objašnjena suština algoritma.
+\item Da li je nešto važno propušteno?\\ Ne, koliko je meni poznato.
+\item Da li ima suštinskih grešaka i propusta?\\ Ne, sam opis algoritma je u skladu sa ostalim javno dostupnim verzijama.
+\item Da li je naslov rada dobro izabran?\\ Jeste.
+\item Da li sažetak sadrži prave podatke o radu?\\ Da, kao što se može videti u samom radu.
+\item Da li je rad lak-težak za čitanje?\\ Rad je izuzetno lepo osmišljen kao celina i veoma lak za čitanje.
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\ Samo osnovno predznanje nekih osnovnih pojmova matematike i informatike.
+\item Da li je u radu navedena odgovarajuća literatura?\\ Jeste.
+\item Da li su u radu reference korektno navedene?\\ Jesu.
+\item Da li je struktura rada adekvatna?\\ Jeste. Čitaoca postepeno uvodi u materiju.
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\ Da.
+\item Da li su slike i tabele funkcionalne i adekvatne?\\ Jesu.
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+%b) veoma upućeni u oblast
+% c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+Veoma upućen u oblast. \\ Ovaj deo računarske inteligencije smo predhodno obrađivali na par kurseva do sada, uz to ja 
+sam generalno zainteresovan za tu oblast, i ovaj rad je bio lep podsetnik na optimizaciju rojem čestica.
+
+
+
+\chapter{Dodatne izmene}
+%Ovde navedite ukoliko ima izmena koje ste uradili a koje vam recenzenti nisu tražili. 
+
+\end{document}
  
