@@ -85,7 +85,7 @@ Inteligencija rojeva predstavlja jednu od paradigmi Računarske Inteligencije (e
 Optimizacija rojem čestica (eng. Particle Swarm Optimization - PSO) je stohastička optimizaciona tehnika zasnovana na veoma inteligentnom kolektivnom ponašanju nekih organizama kao što su insekti, ptice i ribe.
 
 \subsection{Kratak istorijat}
-Prvi i dosta značajan doprinos u polju inteligencije rojeva imao je južnoafrički pesnik Eugene Marais \footnote{Eugène Nielen Marais (9. januar 1871 – 29. mart 1936) je bio južnoafrički advokat, naturalista, pesnik i pisac.} koji je proučavao socijalno ponašanje kako majmuna, tako i mrava. Posle njega, ranih 1990-ih godina, Marco Dorigo \footnote{Marco Dorigo (26. avgust 1961) - italijanski istraživač na polju veštačke inteligencije} modeluje ponašanje kolonija mrava. Zatim, 1995, Eberhart \footnote{Russell C. Eberhart (1950) - američki elektroinženjer} i Kennedy\footnote{James Kennedy (5. novembar 1950) - američki psiholog} razvijaju algoritam optimizacije rojem čestica, na osnovu posmatranog jata ptica.
+Prvi i dosta značajan doprinos u polju inteligencije rojeva imao je južnoafrički pesnik Eugene Marais\footnote{Eugène Nielen Marais (9. januar 1871 – 29. mart 1936) je bio južnoafrički advokat, naturalista, pesnik i pisac.} koji je proučavao socijalno ponašanje kako majmuna, tako i mrava. Posle njega, ranih 1990-ih godina, Marco Dorigo\footnote{Marco Dorigo (26. avgust 1961) - italijanski istraživač na polju veštačke inteligencije} modeluje ponašanje kolonija mrava. Zatim, 1995, Eberhart\footnote{Russell C. Eberhart (1950) - američki elektroinženjer} i Kennedy\footnote{James Kennedy (5. novembar 1950) - američki psiholog} razvijaju algoritam optimizacije rojem čestica, na osnovu posmatranog jata ptica.
 
  Algoritam optimizacije rojem čestica otkriven je sasvim slučajno, pri pokušaju da se na računaru simulira kretanje jata ptica. Prvobitna namera bila je da se grafički prikaže nepredvidiva koreografija jata ptica, sa ciljem da se otkriju obrasci koji omogućavaju pticama da lete sinhronizovano, i da zadrže optimalnu formaciju pri naglim promenama pravaca. Sada je cilj kreiranje jednostavnog i efikasnog optimizacionog algoritma. Od kada je prvi put predstavljen 1995. doživeo je niz poboljšanja i nastale su brojne varijacije ovog algoritma. 
 
@@ -98,14 +98,14 @@ Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete prek
     \caption{Prikaz PSO algoritma na kojem pčele traže cveće}
     \label{fig:bees}
 \end{figure}
-\\ \indent Na slici \ref{fig:bees}, isprekidane linije predstavljaju zamišljene putanje pčela, a strelice prikazuju dve komponente brzine (lokalno najbolju poziciju i globalno najbolju poziciju). Pčela u gornjem delu slike je pronašla globalno najbolju poziciju, dok je pčela sa leve strane pronašla lokalno najbolju poziciju. Pčela u donjem delu slike prikazuje da iako nije pronašla lokalno najbolju poziciju, ide ka globalno najboljoj poziciji. \\
-\indent Na ovaj način pčele pretražuju polje tako što menjaju brzine i pravac kretanja u zavisnosti od toga da li su imale uspeha da pronađu cveće u odnosu na čitav roj. Takođe pčele znaju da izbegavaju mesta koja nisu imala puno cveća. Na kraju će pretražiti celo polje, i nalaziće se iznad mesta na kojem je najveća gustina cveća.
+\\ \indent Na slici \ref{fig:bees}, isprekidane linije predstavljaju zamišljene putanje pčela, a strelice prikazuju dve komponente brzine - lokalno najbolju poziciju i globalno najbolju poziciju (u datom trenutku). Pčela u gornjem delu slike je pronašla globalno najbolju poziciju, dok je pčela sa leve strane pronašla lokalno najbolju poziciju. Pčela u donjem delu slike prikazuje da iako nije pronašla lokalno najbolju poziciju, ide ka globalno najboljoj poziciji. \\
+\indent Na ovaj način pčele pretražuju polje tako što menjaju brzine i pravac kretanja u zavisnosti od toga da li su imale uspeha da pronađu cveće u odnosu na čitav roj. Takođe, pčele znaju da izbegavaju mesta koja nisu imala puno cveća. Na kraju će pretražiti celo polje, i nalaziće se iznad mesta na kojem je najveća gustina cveća.
 
 \subsection{Originalni PSO}
 Algoritam za optimizaciju rojem čestica sadrži jedinke koje se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
 Neka je $x_i(t)$ pozicija čestice \textit{i} u prostoru pretrage u trenutku \textit{t}. Pozicija čestice se menja dodavanjem brzine, $v_i(t)$ na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
 Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu do sada najbolju poziciju, kao i do sada najbolju poziciju čitavog roja. Kognitivna komponenta algoritma predstavlja tendenciju vraćanja u lično najbolje rešenje, dok socijalna komponenta predstavlja tendenciju ka globalno najboljem rešenju. Brzina se računa kao: \[ v_i(t+1) = v_i(t) + c_1r_1(p_i(t) - x_i(t)) + c_2r_2(p_g(t) - x_i(t))\]
-gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], dok su parametri $c_1$ i $c_2$ konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. 
+gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], i predstavljaju stohastičku komponentu algoritma. Parametri $c_1$ i $c_2$ su konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. 
 Pseudokod originalnog PSO algoritma: \\ \\
 \textbf{Algoritam} \textit{osnovni} PSO: \\ 
 Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;\\
@@ -145,11 +145,11 @@ U svakoj generaciji, iterativni proces čestice izgleda kao na slici \ref{fig:ve
 \subsection{Algoritmi gbest i lbest PSO}
 \label{subsec:podnaslov1}
 
-U slučaju globalno najboljeg PSO algoritma (eng. Global Best - \textit{gbest}) susedi za svaku česticu su zapravo čitav roj. On implementira topologiju zvezde. 
+U slučaju globalno najboljeg PSO algoritma (eng. Global Best - \textit{gbest}) čestice mogu da komuniciraju sa svim ostalim česticama u roju, i na taj način ceo roj deli informaciju o najboljoj poziciji koja je pronađena (globalno najbolja pozicija). Ovaj pristup može dovesti do toga da ceo roj ostane zaglavljen u tački lokalnog minimuma, pa tako nastaju i mnoge druge topologije mreže.
 
-Lokalno najbolji PSO (eng. Local Best - \textit{lbest}) koristi topologiju prstena, gde svaka čestica ima određeni broj suseda. Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
+Lokalno najbolji PSO (eng. Local Best - \textit{lbest}) podrazumeva da čestice dele informacije sa određenim podskupom čestica u roju (susedima). Doprinos jedinke brzini je proporcionalna razdaljini između čestice i najbolje pozicije koju su pronašli susedi. 
 
-Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost. Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zaroboljen u lokalnom optimumu. U većini slučajeva, topologija prstena kao kod lbest PSO algoritma poboljšava rezultate \cite{engelbrecht2007computational}.
+Zbog bolje povezanosti čestica u gbest algoritmu, on brže konvergira ka rešenju. Cena brže konvergencije je manja raznovrsnost. Kao posledica veće raznovrsnosti (što podrazumeva da je veći deo prostora pretrage pokriven), lbest PSO ima manje šanse da ostane zarobljen u lokalnom optimumu. \cite{engelbrecht2007computational}.
 
 Razvijene su mnoge strategije na osnovu kojih se bira susedstvo, kao što je razdaljina u prostoru. Međutim, preferirano rešenje je odabir na osnovu indeksa, i za to postoje dva glavna razloga:
 \begin{enumerate}
@@ -157,7 +157,8 @@ Razvijene su mnoge strategije na osnovu kojih se bira susedstvo, kao što je raz
     \item Lakše je prosleđivanje informacije o dobrim rešenjima svim česticama, nezavisno od njihove lokacije u prostoru pretrage.
 
 \end{enumerate}
-Obe strategije zasnovane su na nekom socijalnom ponašanju. Zašto nije dobro birati susedstvo na osnovu udaljenosti? Zamislite da koordinate u prostoru predstavljaju mentalne sposobnosti osobe. U tom slučaju, dve veoma slične osobe možda se nikada ne bi srele, a možemo imati dve veoma različite osobe koje će uvek biti susedne \cite{liu2006particle}.
+Obe strategije zasnovane su na nekom socijalnom ponašanju. Zašto nije dobro birati susedstvo na osnovu udaljenosti?  Može se desiti da čestice koje su na većoj udaljenosti imaju slične osobine (kao npr. članovi jedne porodice). One nikad neće biti susedne, iako imaju sličnosti.  \cite{liu2006particle}.
+    
     
 \section{Osnovne varijacije}
 Postoji nekoliko modifikacija osnovnog PSO algoritma \cite{rini2011particle}, a one su razvijane da bi poboljšale brzinu konvergencije i kvalitet rešenja koji ovaj algoritam nalazi.
