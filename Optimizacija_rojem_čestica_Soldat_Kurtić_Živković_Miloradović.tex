@@ -336,9 +336,32 @@ Na PSO direktno utiče raznolikost populacije kao i socijalna interakcija među 
 Čestice u roju uče jedne od drugih tako što razmenjuju informacije o uspešnosti svake čestice i na osnovu dobijenih saznanja postaju više slične svojim boljim susedima. Veći utcaj na čestice imaće sused koji je više uspešan od suseda koji je manje uspešan. Kako se informacije kreću unutar određene strukture populacije govori nam stepen povezanosti čestica, broj klastera i najmanja razdaljina između čestica. Velika povezanost čestica utiče na brzo širenje informacija, što u pogledu optimizacije dovodi do brže konvergencije ka rešenju po cenu zaglavljivanja u lokalnom minimumu. Suprotno, ako čestice nisu dobro povezane postojaće više klastera (grupacija), informacije se sporije razmenjuju i može se desiti da se ne pokrije ceo prostor pretrage.
 
 Različite topologije uticaja su razvijane i istraživane za potrebe PSO algoritma a one koje su se najbolje pokazale su:
+
+\begin{table}[!b]
+    \centering
+    \begin{tabular}{| c | c |}
+    \hline
+        Zvezda &  \ref{fig:ZvezdaPrstenTocak} levo  \\
+    \hline    
+        Prsten &  \ref{fig:ZvezdaPrstenTocak} sredina \\
+    \hline
+        Točak & \ref{fig:ZvezdaPrstenTocak} desno \\
+    \hline
+        Piramida & \ref{fig:PiramidaCetiriKlasteraFonNojman} levo \\
+    \hline
+        Četiri klastera & \ref{fig:PiramidaCetiriKlasteraFonNojman} sredina\\
+    \hline
+        Fon Nojmanova & \ref{fig:PiramidaCetiriKlasteraFonNojman} desno \\
+    \hline
+    \end{tabular}
+    \caption{Reference}
+    \label{tab:my_label}
+\end{table}{c|c}
+
+
 \begin{itemize}
     \item \textbf{Zvezda}: Svaka čestica komunicira sa svakom drugom česticom čime informacija o trenutno najboljoj čestici dolazi veoma brzo. Stoga, postoji mogućnost glavljenja u lokalnom minimunu. Prva implementacija PSO je koristila zvezdanu strukturu (gbest).
-    \item \textbf{Prsten}: Svaka čestica komunicira sa svojih N suseda. Kada je N=2 struktura izgleda kao na slici \ref{fig:ZvezdaPrstenTocak}b. Razlčita susedstva se preklapaju tako da informacije teku sporije. Konvergencija je sporija i pokriva se veći prostor pretrage.
+    \item \textbf{Prsten}: Svaka čestica komunicira sa svojih N suseda. Kada je N=2 struktura izgleda kao na slici. Razlčita susedstva se preklapaju tako da informacije teku sporije. Konvergencija je sporija i pokriva se veći prostor pretrage.
     \item \textbf{Točak}: Jedna čestica predstavlja žarište i sve informacije se prenose preko te čestice.
     \item \textbf{Piramida}: Formira se trodimenzioni žičani okvir.
     \item \textbf{Četiri klastera}: Četiri klastera povezani svaki sa svakim, dok se unutar jednog nalaze čestice povezane sa četiri suseda.
