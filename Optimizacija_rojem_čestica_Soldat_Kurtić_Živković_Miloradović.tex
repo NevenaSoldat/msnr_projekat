@@ -100,7 +100,7 @@ Prvi i dosta značajan doprinos u polju inteligencije rojeva imao je južnoafri�
 Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete preko polja sa cvećem \cite{10.4018/IJRSDA.2018040101}. Roj ima urođenu želju da pronađe poziciju gde je cveće najgušće raspoređeno. Takođe, pčele nemaju nikakvo znanje o polju na kom se nalaze. Tako počinju svoju pretragu u različitim smerovima. Svaka pčela pamti mesta na kojima je bila i na kojim je bilo najviše cveća, i tu informaciju može preneti komunikacijom sa ostatkom roja. Kako vreme prolazi, pčele biraju da li će se vratiti na svoje prethodno pronađene najbolje lokacije ili će ići ka lokacijama koje su dobile od ostalih pčela. One koje oklevaju će ići u oba pravca i nalaziće se negde između ciljanih lokacija, u zavisnosti od toga da li će uticaj roja biti dominantan ili ne. Povremeno pčela može da preleti preko dela polja u kom se nalazi više cveća od do sad otkrivenih lokacija. Tada će se čitav roj povlačiti ka novootkrivenoj lokaciji.
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=1.2]{bees.png}
+    \includegraphics[scale=1]{bees.png}
     \caption{Prikaz PSO algoritma na kojem pčele traže cveće}
     \label{fig:bees}
 \end{figure}
@@ -139,7 +139,7 @@ gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutk
 \end{algorithmic}  
 \end{algorithm} 
 
-Funkcija $f:\mathbb{R}^{n_s} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.\\ 
+Funkcija $f:\mathbb{R}^{n_s} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.
 
 
 
@@ -153,7 +153,7 @@ Brzina \textit{i}-te čestice ima tri komponente:\\
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=1.5]{velocity.png}
+    \includegraphics[scale=1.3]{velocity.png}
     \caption{Prikaz promene brzine}
     \label{fig:velocity}
 \end{figure}
@@ -201,7 +201,7 @@ Loša strana promene brzine leži u tome što se menja i pravac kretanja čestic
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=0.25]{slika3_1.png}
+    \includegraphics[scale=0.23]{slika3_1.png}
     \caption{Efekat smanjenja brzine}
     \label{fig:smanjenje_brzina}
 \end{figure}
@@ -256,11 +256,9 @@ Neke od primena su sledeće:
 Topologije distributivnih mreža su dugi niz godina bile sa smanjenim mogućnostima promene strukture, zbog niskog stepena automatizacije i ograničenja daljinskog upravljanja. 
 Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan, diskretan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}.
 
-\textbf{Cilj} rekonfiguracije i planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.\\
+\textbf{Cilj} rekonfiguracije i planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.
 
 Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na optimizaciji rojem čestica sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži. 
-
-\vspace{15mm} 
 
 \begin{flushleft}
 \textbf{Formulisanje problema:} 
@@ -293,13 +291,11 @@ Povrh toga, neka ograničenja se moraju uzeti u obzir:
 
 \vspace{5mm} 
 
-Problem je formulisan sa dve funkcije cilja. Prva funkcija cilja odnosi se na gubitke energije. U ovoj funkciji figurišu troškovi održavanja i troškovi gubitaka kao i fiksni troškovi. Druga funkcija cilja koja se koristi je vezana za pouzdanost sistema i smanjuje ukupnu neisporučenu energiju. U ovoj funkciji figurišu stope otkaza i trajanja popravke svake napojne grane. Minimizacija ovog cilja maksimizuje pouzdanost mreža.
+Problem je formulisan sa dve funkcije cilja. Prva funkcija cilja odnosi se na gubitke energije. U ovoj funkciji figurišu troškovi održavanja i troškovi gubitaka kao i fiksni troškovi. Druga funkcija cilja koja se koristi je vezana za pouzdanost sistema i smanjuje ukupnu neisporučenu energiju. U ovoj funkciji figurišu stope otkaza i trajanja popravke svake napojne grane. Minimizacija ovog cilja maksimizuje pouzdanost mreža.\\
 
-\vspace{5mm} 
 
 Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice u d–dimenzionalnom prostoru rešenja izračunata u k+1-oj iteraciji u opštem slučaju nije celi broj, što znači da se PSO algoritam ne može primenjivati za rešavanje diskretnih optimizacionih problema. U tu svrhu 1997. godine Eberhart i Kennedy predstavili su binarnu verziju PSO algoritma, koja predstavlja modifikaciju PSO algoritma za rešavanje diskretnih optimizacionih problema. Modifikacija se ogleda kroz normalizaciju brzine čestice na datoj poziciji u intervalu [0, 1].
 
-\vspace{5mm} 
 
 \begin{flushleft}
 \textbf{Kodiranje čestica:} 
@@ -387,17 +383,17 @@ Različite topologije uticaja su razvijane i istraživane za potrebe PSO algorit
 \end{itemize}
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=0.2]{Star.png}
-    \includegraphics[scale=0.2]{Ring.png}
-    \includegraphics[scale=0.2]{Wheel.png}
+    \includegraphics[scale=0.15]{Star.png}
+    \includegraphics[scale=0.15]{Ring.png}
+    \includegraphics[scale=0.15]{Wheel.png}
     \caption{Zvezda, prsten i točak}
     \label{fig:ZvezdaPrstenTocak}
 \end{figure}
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=0.2]{Pyramid.png}
-    \includegraphics[scale=0.2]{FourClusters.png}
-    \includegraphics[scale=0.2]{VonNeumann.png}
+    \includegraphics[scale=0.15]{Pyramid.png}
+    \includegraphics[scale=0.15]{FourClusters.png}
+    \includegraphics[scale=0.15]{VonNeumann.png}
     \caption{Piramida, četiri klastera i Fon Nojman}
     \label{fig:PiramidaCetiriKlasteraFonNojman}
 \end{figure}
