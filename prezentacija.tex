@@ -86,6 +86,58 @@ Brzina se računa kao:
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Osnovne varijacije: Smanjenje brzina}
+Modifikacije osnovnog algoritma optimizacija rojem čestica
+
+\begin{itemize}
+    \item \textbf{Eksploracija} - istraživanje različitih delova prostora pretrage
+    \item \textbf{Eksploatacija}  -  koncentrisanje oko regije koje garantuje nalaženje rešenja
+\end{itemize}
+Smanjenje brzina uvodi se da bi se sprečilo da čestice napuste  prostor pretrage usled čestog ažuriranja položaja
+
+
+\begin{equation}
+    v_i(t+1) = \begin{cases}
+                
+            v'_i(t+1),  &  v'_i(t+1) < V_{max}\\
+            V_{max},  &   v'_i(t+1) \geq V_{max}
+           
+             \end{cases}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{Osnovne varijacije: Inercijske težine}
+U osnovnu formulu ažuriranja brzine uvodi se težina $w$ koji konroliše koliko će prethodni pravac leta uticati na novu brzinu, kao i sam balans između istraživanja i eksploatacije
+\[v_{ij}(t+1) = wv_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
+
+Veće vrednosti $w$ olakšavaju eksploraciju, dok manje vrednosti $w$ podstiču lokalnu eksploataciju
+
+\begin{itemize}
+    \item \textbf{$w$ >= 1} - roj divergira, brzine idu ka maksimalnoj brzini
+    \item \textbf{0 < $w$ < 1}  -  čestice usporavaju, pa konvergencija zavisi od $c_1$ i $c_2$
+    \item \textbf{$w$ < 0} -  brzine opadaju sve dok ne stignu do nule i time se algoritam zaustavlja
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Osnovne varijacije: Koeficijent suženja i model brzine}
+
+Ovaj princip je sličan inercijskoj težini, ali se brzine ograničavaju konstantom $\chi$
+
+\[v_{ij} (t + 1) = \chi[v_{ij} (t) + \phi_1 (y_{ij} (t) - x_{ij} (t)) + \phi_2 (\hat{y}_j (t) - x_{ij} (t))]\]
+gde je $$\chi = \frac{2k}{|2-\phi-\sqrt{\phi(\phi-4)}|},$$sa $\phi = \phi_1 +  \phi_2 , \phi_1 = c_1r_1$ i $\phi_2 = c_2r_2$\
+
+Modeli brzina se razlikuju u komponentama koje su uključene u jednačinu brzine
+\begin{itemize}
+    \item \textbf{Kognitivni} model - isključuje socijalnu komponentu
+    \item \textbf{Socijalni} model- isključuje kognitivnu komponentu
+    \item model u kojoj sama \textbf{čestica neće sebe izabrati za najbolju} - najbolje rešenje se bira iz susedstva
+    
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}{Primene}
 
 \frametitle{Primene}
