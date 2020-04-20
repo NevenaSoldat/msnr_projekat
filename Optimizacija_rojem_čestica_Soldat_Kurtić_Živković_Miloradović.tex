@@ -235,28 +235,24 @@ Modeli se razlikuju u komponentama koje su uključene u jednačinu brzine i u to
 \end{itemize}
 
 \section{Primene}
-Postoje različiti načini primene PSO algoritma. Neki od njih obuhvataju širi opseg specifičnih primena dok drugi podrazumevaju primenu na jasno definisan problem \cite{eberhart2001swarm}.
+Postoje različiti načini primene PSO algoritma. Počev od rešavanja neograničenih, kontinualnih, problema i problema optimizacije sa jednim ciljem uspešno rešavaju i ograničene, diskretne, optimizacije sa više ciljeva. \cite{eberhart2001swarm}.
 Neke od primena su sledeće:
 \begin{itemize}
-    \item U dizajnu antena – kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…
+    \item Primene na polju neuronskih mreža - inverzija neuronskih mreža, kontrola neuronskih mreža za nelinearne procese,  kontrola mobilnih neuronskih mreža, izgradnja neuronskih kontrolora.
+    \item U dizajnu - dizajn antena (kontrola i dizajn faznih polja, dizajniranje i modeliranje širokopojasnih antena, ispravljanje grešaka u polju, dizajniranje ugradbenih antena…), dizajn bluetooth mreža (usmeravanje, izgradnja radarskih mreža.)
     \item U biomedicini - u svrhu detekcije Parkinsonove bolesti na temelju drhtavice, optimizacije biomehaničkog ljudskog pokreta, klasifikacije raka i predviđanja ostatka života, dizajniranje lekova.
-    \item Za dizajniranju bluetooth mreža, usmeravanje, za izgradnju radarskih mreža.
     \item Kombinatorni problemi- rešavanje problema trgovačkog putnika, optimizacija puta…
-    \item U kombinaciji s neuronskim mrežamama, PSO se koristi za inverziju neuronskih mreža, kontrolu neuronskih mreža za nelinearne procese,  kontrolu mobilnih neuronskih mreža, izgradnju neuronskih kontrolora.
     \item Koristi se u funkciji predviđanja kvaliteta i klasifikacije vode, u ekološkim modelima, meteorološkim predviđanjima.
-   
-     
-   
+
 \end{itemize}
 
-\subsection{Primer rešavanja problema rekonfiguracije i planiranja distributivne mreže}
+\subsection{Primer rešavanja problema planiranja razvoja distributivne mreže}
+
+Distributivna mreža je deo elektroenergetskog sistema koji omogućava da se električna energija preuzeta iz prenosne mreže ili manjih elektrana priključenih na distributivnu mrežu, distribuira do srednjih i malih potrošaca. Ovaj problem planiranja razvoja distributivnih mreža razvija se i unapređuje više od 50.godina.\\
+Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}.
 \vspace{5mm} 
 
-
-Topologije distributivnih mreža su dugi niz godina bile sa smanjenim mogućnostima promene strukture, zbog niskog stepena automatizacije i ograničenja daljinskog upravljanja. 
-Problem određivanja optimalne konfiguracije distributivne mreže je kompleksan, kombinatoran, nelinearan, diskretan za čije rešavanje su idealne \textbf{metaheurističke} metode koje koriste modele zasnovane na prirodnim procesima među koje spada i \textbf{optimizacija rojem čestica}.
-
-\textbf{Cilj} rekonfiguracije i planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.
+\textbf{Cilj} planiranja distributivnog sistema je optimizacija ukupnih troškova elektroenergetske kompanije da opslužuje potrošačke zahteve – opterećenja koji obično rastu sa vremenom.
 
 Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na optimizaciji rojem čestica sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži. 
 
@@ -266,7 +262,7 @@ Za rešavanje ovog problema koristi se metaheuristička metoda zasnovana na opti
 
 Rekonfiguracija distributivne mreže sa ciljem minimizacije ukupnih gubitaka aktivne snage u mreži prema teoriji grafova svodi se na pronalazak optimalne konfiguracije mreže, odnosno pronalazak razapinjujućeg stabla grafa za koji je optimizacioni kriterijum ispunjen. Pod razapinjujućem stablom (eng. spanning trees) podrazumevamo podgraf koji se dobija iz grafa uklanjanjem određenog broja  grana iz grafa, a da pritom graf ostane povezan sa istim brojem čvorova. 
 
-\vspace{5mm} 
+\vspace{3mm} 
 
 \begin{flushleft}
 Faktori koji se moraju razmatrati  u optimizaciji distributivnog sistema:
@@ -289,7 +285,7 @@ Povrh toga, neka ograničenja se moraju uzeti u obzir:
     \item radijalnost mreže.
 \end{itemize}
 
-\vspace{5mm} 
+\vspace{3mm} 
 
 Problem je formulisan sa dve funkcije cilja. Prva funkcija cilja odnosi se na gubitke energije. U ovoj funkciji figurišu troškovi održavanja i troškovi gubitaka kao i fiksni troškovi. Druga funkcija cilja koja se koristi je vezana za pouzdanost sistema i smanjuje ukupnu neisporučenu energiju. U ovoj funkciji figurišu stope otkaza i trajanja popravke svake napojne grane. Minimizacija ovog cilja maksimizuje pouzdanost mreža.\\
 
@@ -303,7 +299,7 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
 
 Šema kodiranja čestica kodira topologiju mreže, odnosno, transformatorske stanice i putanje fidera. Najčešće korišćeno kodiranje je direktno međutim slabost takvog pristupa je potencijalno dobijanje upetljanih mreža. Da bi se to izbeglo, koristi se hibridni pristup direktnog i indirektnog kodiranja, gde čestice sadrže dva segmenta.
 
-\vspace{5mm} 
+\vspace{2mm} 
 
 \begin{itemize}
 \item \textbf{Segment fidera} – Sastoji se od podsegmenta “pristrasnosti” čvora vrednosti $\rho$,  $\rho \in (-1,1)$, odnosno, indirektna informacija koja dekodiranjem daje mrežnu topologiju i drugi podsegment sadrži broj fidera (\(N_{Fi}\) za transformatorske podstanice i) za svaku podstanicu, što je direktna informacija.
@@ -324,23 +320,35 @@ Prema \(x_{i d}^{k+1} = x_{i d}^{k} + v_{i d}^{k+1}  \) pozicija i–te čestice
 
 U ovom pristupu čvorovi su uzastopno izabrani i dodati na terminalni čvor rastućom putanjom na osnovu minimalne vrednosti proizvoda troškova grane i vrednosti “pristrasnosti” čvora. Troškovi grane se uzimaju kao udaljenosti između njegovih početnih i krajnjih čvorova. Po predloženoj šemi, dobija se radijalna mreža i generišu se bočne grane u odnosu na glavne grane. Osim toga, u realnoj distributivnoj mreži, razumno je da se ograniči povezivanje čvora sa samo nekoliko susednih čvorova. Za tu svrhu formirana je matrica povezivanja M, dimenzije nxn, gde je n broj čvorova. Ako je dozvoljena veza između čvorova i i j, onda je M(i,j) =1, inače  M(i,j) =0. Moguća povezanost čvora postoji sa fiksnim brojem svojih najbližih susednih čvorova \cite{inproceedings}.\\
 \\ 
-\textbf{Pseudokod:} \\ 
-\textbf{Početak:} /*Inicijalizacija - podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
-\hspace*{5mm}k = 0; \\
-\hspace*{5mm}$s^k = s_{i}^0;$  /*Generisanje početne tačke pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
-\hspace*{5mm}$v^k = v_{i}^0;$  /*Generisanje početne brzine pretrage za celu populaciju po predloženoj šemi kodiranja */ \\
-\hspace*{5mm}Dekodiranje svih čestica; /*Po predloženoj šemi dekodiranja*/ \\
-\hspace*{5mm}Oceniti f(k); /* Izračunati vrednosti funkcije cilja svake čestice u tekućoj populaciji k*/ \\
-\textbf{Ponavljati:}/*Globalna iteracija, k*/ \\
-\hspace*{5mm}$v_{i}^k+1 = wv_{i}^k + c_{1}rand_{1} x (pbest_{i} - s_{i}^k) + c_{2}rand_{2} x (gbest_{i} - s_{i}^k);$ /*Ažuriraj brzinu za sve čestice */ \\
-\hspace*{5mm}$s_{i}^{k+1} = s_{i}^k + v_{i}^{k+1};$ /*Ažuriraj poziciju za sve čestice*/ \\
-\hspace*{5mm}Dekodiranje svih čestica; \\
-\hspace*{5mm}Oceniti f(k); /* Izračunati vrednost funkcije cilja svake čestice u tekućoj populaciji k*/ \\
-\hspace*{5mm}\textbf{If} f(k)>pbest(k) \textbf{Then} pbest(k+1)=f(k) /*Prihvatiti funkciju cilja f(k) čestice kao pbest(k+1) za tu česticu*/ \\
-\hspace*{5mm}\textbf{If} pbest(k)>gbest(k) \textbf{Then} gbest(k+1)=pbest(k) i pamti k-tu česticu  /*Prihvatiti pbest(k) kao gbest(k+1) i sačuvaj k-tu česticu kao najbolju*/ \\
-\hspace*{5mm}$k = k+1;$ \\
-\textbf{Dok} nije ispunjen zahtev za zaustavljanje; /*$k > k_{max}$  */ \\
-\textbf{Izlaz:} Najbolje nađeno rešenje \\
+
+
+\begin{algorithm}
+\small
+\caption{\textit{PSO koji rešava problem planiranja razvoja distributivne mreže} }
+\label{alg:PSO_distribmreze}  
+\begin{algorithmic} 
+\STATE \textbf{Početak:} /*Inicijalizacija - podešavanje veličine populacije i maksimalnog broja iteracija $k_{max}$ */ \\
+\STATE{$k = 0;$}
+\STATE{$s^k = s_{i}^0;$} /*Generisanje početne tačke pretrage za celu populaciju po predloženoj šemi kodiranja */
+\STATE{$v^k = v_{i}^0;$} /*Generisanje početne brzine pretrage za celu populaciju po predloženoj šemi kodiranja */
+\STATE Dekodiranje svih čestica; /*Po predloženoj šemi dekodiranja*/ 
+\STATE Oceniti f(k); /* Izračunati vrednosti funkcije cilja svake čestice u tekućoj populaciji k*/
+\STATE \textbf{Ponavljati:}/*Globalna iteracija, k*/ 
+\STATE {$v_{i}^k+1 = wv_{i}^k + c_{1}rand_{1} x (pbest_{i} - s_{i}^k) + c_{2}rand_{2} x (gbest_{i} - s_{i}^k);$ } /*Ažuriraj brzinu za sve čestice */
+\STATE {$s_{i}^{k+1} = s_{i}^k + v_{i}^{k+1};$ } /*Ažuriraj poziciju za sve čestice*/
+\STATE Oceniti f(k); /* Izračunati vrednost funkcije cilja svake čestice u tekućoj populaciji k*/
+\IF{f(k)>pbest(k)}
+            \STATE {pbest(k+1)=f(k)} /*Prihvatiti funkciju cilja f(k) čestice kao pbest(k+1) za tu česticu*/
+\ENDIF
+\IF{pbest(k)>gbest(k)}
+            \STATE {gbest(k+1)=pbest(k)} i pamti k-tu česticu /*Prihvatiti pbest(k) kao gbest(k+1) i sačuvaj k-tu česticu kao najbolju.*/
+\ENDIF
+\STATE{$k = k+1;$ } 
+\STATE{\textbf{Dok} nije ispunjen zahtev za zaustavljanje; /*$k > k_{max}$  */} 
+\STATE{\textbf{Izlaz:} Najbolje nađeno rešenje.} 
+\end{algorithmic} 
+\end{algorithm} 
+
 
 \section{Topologije uticaja}
 
