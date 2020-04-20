@@ -56,6 +56,12 @@
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algorithmic}% http://ctan.org/pkg/algorithms
+\makeatletter
+\renewcommand{\ALG@name}{Algoritam}
+\renewcommand{\listalgorithmname}{List of \ALG@name s}
+
 \begin{document}
 
 \title{Optimizacija rojem čestica\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
@@ -105,26 +111,37 @@ Kako bismo lakše razumeli algoritam možemo zamisliti roj pčela koje lete prek
 Algoritam za optimizaciju rojem čestica sadrži jedinke koje se kreću kroz višedimenzioni prostor pretrage, a pozicije jedinki se menjaju u skladu sa sopstvenim iskustvom, kao i sa iskustvom susednih jedinki. Svaka od tih čestica predstavlja jedno moguće rešenje.
 Neka je $x_i(t)$ pozicija čestice \textit{i} u prostoru pretrage u trenutku \textit{t}. Pozicija čestice se menja dodavanjem brzine, $v_i(t)$ na trenutnu poziciju. \[x_i(t+1) = x_i(t) + v_i(t+1) \]
 Njihovo kretanje se usmerava imajući u vidu njihovu trenutnu poziciju, njihovu do sada najbolju poziciju, kao i do sada najbolju poziciju čitavog roja. Kognitivna komponenta algoritma predstavlja tendenciju vraćanja u lično najbolje rešenje, dok socijalna komponenta predstavlja tendenciju ka globalno najboljem rešenju. Brzina se računa kao: \[ v_i(t+1) = v_i(t) + c_1r_1(p_i(t) - x_i(t)) + c_2r_2(p_g(t) - x_i(t))\]
-gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], i predstavljaju stohastičku komponentu algoritma. Parametri $c_1$ i $c_2$ su konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. 
-Pseudokod originalnog PSO algoritma: \\ \\
-\textbf{Algoritam} \textit{osnovni} PSO: \\ 
-Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;\\
-\textbf{ponavljaj} \\ 
-\hspace*{5mm}\textbf{za} \textit{svaku česticu} $\textit{i} = 1,...,n_s$ \textbf{uradi} \\
-\hspace*{5mm} // postavi lokalno najbolju poziciju \\
-\hspace*{10mm} \textbf{ako} $f(x_i) < f(p_i)$ \textbf{onda} \\
-\hspace*{15mm} $p_i = x_i;$ \\
-\hspace*{10mm} \textbf{kraj} \\
-\hspace*{5mm}//postavi globalno najbolju poziciju \\\
-\hspace*{10mm}\textbf{ako} $f(p_i) < f(p_g)$ \textbf{onda} \\
-\hspace*{15mm} $p_g = p_i;$ \\
-\hspace*{10mm} \textbf{kraj} \\
-\hspace*{5mm} \textbf{kraj} \\
-\hspace*{5mm} \textbf{za} \textit{svaku česticu} $i = 1,...,n_s$ \textbf{uradi}\\
-\hspace*{10mm} ažuriraj brzinu; \\
-\hspace*{10mm} ažiriraj poziciju; \\
-\hspace*{5mm} \textbf{kraj} \\
-\textbf{dok} nije ispunjen zahtev za zaustavljanje; \\ \\Funkcija $f:\mathbb{R}^{n_s} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.
+gde $p_i(t)$ predstavlja najbolju do sada poziciju čestice \textit{i} u trenutku t, dok je $p_g(t)$ globalno najbolje rešenje (pozicija) do trenutka t. Parametri $r_1$ i $r_2$ su nasumične vrednosti izabrane iz uniformne raspodele na intervalu [0,1], i predstavljaju stohastičku komponentu algoritma. Parametri $c_1$ i $c_2$ su konstante koje predstavljaju pozitivna ubrzanja čija je uloga da skaliraju značaj kognitivne, odnosno socijalne komponente brzine. Pseudokod originalnog PSO algoritma dat je ispod (Algoritam \ref{alg:osnovni_PSO}).
+
+
+\begin{algorithm}
+\caption{\textit{Osnovni PSO} }
+\label{alg:osnovni_PSO}  
+\begin{algorithmic} 
+\STATE Kreiraj i inicijalizuj $n_s$ - dimenzioni roj;
+\REPEAT
+    \FOR{\textit{svaku česticu} $\textit{i} = 1,...,n_s$}
+        \STATE //postavi lokalno najbolju poziciju;
+        \IF{$f(x_i) < f(p_i)$}
+            \STATE{$p_i = x_i;$}
+        \ENDIF
+        \STATE //postavi globalno najbolju poziciju;
+        \IF{$f(p_i) < f(p_g)$}
+            \STATE {$p_g = p_i;$}
+        \ENDIF
+    \ENDFOR
+     \FOR{\textit{svaku česticu} $\textit{i} = 1,...,n_s$}
+        \STATE ažuriraj poziciju;
+        \STATE ažuriraj brzinu;
+     \ENDFOR
+\UNTIL{nije ispunjen zahtev za zaustavljanje}
+\end{algorithmic}  
+\end{algorithm} 
+
+Funkcija $f:\mathbb{R}^{n_s} \to \mathbb{R}$ je fitnes funkcija. Fitnes funkcija računa koliko je dobijeno rešenje blisko optimalnom, odnosno meri kvalitet rešenja.\\ 
+
+
+
 \subsection{Komponente brzine PSO algoritma}
 Brzina \textit{i}-te čestice ima tri komponente:\\
 \begin{itemize}
