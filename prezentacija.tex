@@ -3,41 +3,30 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usetheme{Copenhagen}
+\usecolortheme{dolphin}
 \usecolortheme{default}
-\usepackage{media9}
-\renewcommand{\figurename}{Slika}
 
 %Information to be included in the title page:
-\title[Optimizacija rojem čestica]{Optimizacija rojem čestica}
+
+
+\title[Optimizacija rojem čestica]{\textbf{Optimizacija rojem čestica}}
 \author{Nevena Soldat, Tijana Živković, Ana Miloradović, Milena Kurtić}
 \institute{Matematički fakultet, Univerzitet u Beogradu}
 \date{\today}
 
-
-
 \begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{birds.png}}
 \frame{\titlepage}
+}
 
-\begin{frame}
-\frametitle{Pregled}
-\begin{itemize}
-    \item{Uvod u optimizaciju rojem čestica}
-    \item{Osnovni algoritam}
-    \item{Varijacije parametara}
-    \item{Primena}
-    \item{Topologije}
-    \item{Literatura}
-\end{itemize}
-
-\end{frame}
 
 \begin{frame}{Uvod}
 
-Šta je optimizacija rojem čestica?
-\begin{itemize}
-    \item optimizaciona tehnika zasnovana na inteligentnom ponašanju nekih organizama, kao što su insekti, ptice i ribe
-
-\end{itemize}
+\begin{block}{Definicija}
+Optimizacija rojem čestica je \alert{optimizaciona tehnika} zasnovana na inteligentnom ponašanju nekih organizama, kao što su insekti, ptice, ribe, i mnogi drugi.
+\end{block}
 
 Nastanak:
 \begin{itemize}
@@ -57,7 +46,7 @@ Osnovni koncepti:
 \end{itemize}
 
 Neka je $x_i(t)$ pozicija čestice \textit{i} u trenutku \textit{t}. Pozicija se menja dodavanjem brzine $v_i(t)$ na trenutku poziciju:
-\[ x_i(t+1) = x_i(t) + v_i(t+1) \]
+\[x_i(t+1) = x_i(t) + v_i(t+1) \]
 Brzina se računa kao:
 \[ v_i(t+1) = v_i(t) + c_1r_1(p_i(t) - x_i(t)) + c_2r_2(p_g(t) - x_i(t))\] gde su:
 
@@ -78,11 +67,12 @@ Brzina se računa kao:
     
 \end{figure}
 
-\begin{itemize}
+\begin{enumerate}
     \item \textbf{moment} - prethodno stanje brzine
     \item \textbf{kognitivna} komponenta - tendencija vraćanja u lično najbolje
     \item \textbf{socijalna} komponenta - tendencija ka kretanju ka naboljem globalnom
-\end{itemize}
+\end{enumerate}
+
 \end{frame}
 
 
@@ -118,7 +108,7 @@ Smanjenje brzina uvodi se da bi se sprečilo da čestice napuste  prostor pretra
 \end{frame}
 
 \begin{frame}{Osnovne varijacije: Inercijske težine}
-U osnovnu formulu ažuriranja brzine uvodi se težina $w$ koji konroliše koliko će prethodni pravac leta uticati na novu brzinu, kao i sam balans između istraživanja i eksploatacije
+U osnovnu formulu ažuriranja brzine uvodi se težina \alert{$w$} koji konroliše koliko će prethodni pravac leta uticati na novu brzinu, kao i sam balans između istraživanja i eksploatacije 
 \[v_{ij}(t+1) = wv_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2r_{2j}(t)[\hat{y}_{ij}(t) - x_{ij}(t)] \]
 
 Veće vrednosti $w$ olakšavaju eksploraciju, dok manje vrednosti $w$ podstiču lokalnu eksploataciju
@@ -155,10 +145,11 @@ Modeli brzina se razlikuju u komponentama koje su uključene u jednačinu brzine
 \item Kontinualni i diskretni problemi
 \item \textbf{Oblasti primene:} Neuronske mreže, telekomunikacije, istraživanje podataka, dizajn(antene, bluetooth), kombinatorna optimizacija, biomedicina itd.
 \item \textbf{Primer:} PSO koji rešava problem planiranja razvoja distributivnih mreža
-\item Šta je \textbf{distributivna mreža}?
-\begin{itemize}
-    \item deo elektroenergetskog sistema koji omogućava da se električna energija distribuira do srednjih i malih potrošača. 
-\end{itemize}
+
+\begin{block}{Definicija}
+\textbf{Distributivna mreža} je deo elektroenergetskog sistema koji omogućava da se električna energija distribuira do srednjih i malih potrošača. 
+\end{block}
+
 \item \textbf{Proces planiranja} razvoja distributivnih mreža:
 \begin{itemize}
     \item Šta?
@@ -178,7 +169,6 @@ Modeli brzina se razlikuju u komponentama koje su uključene u jednačinu brzine
 \begin{itemize}
 \item \textbf{Formulacija problema} 
 \begin{itemize}
-    \item Multigranski graf
     \item \textbf{Faktori} - minimizacija gubitaka energije, ulaganja u nove objekte i distributivne vodove, maksimizacija pouzdanosti sistema
     \item \textbf{Ograničenja} - kapacitet vodova, naponski nivo opterećenja u čvorovima, radijalnost mreže
     \item \textbf{Funkcije cilja} - gubitak energije, pouzdanost sistema
@@ -200,12 +190,13 @@ Modeli brzina se razlikuju u komponentama koje su uključene u jednačinu brzine
 \end{frame}
 
 
+
 \begin{frame}{Topologije uticaja}
 \frametitle{Topologije uticaja }
 \begin{itemize}
     \item Na PSO direktno utiče raznolikost populacije kao i socijalna interakcija čestica.
     \item Čestice u roju uče jedne od drugih tako što razmenjuju informacije o uspešnosti svake čestice i na osnovu dobijenih saznanja postaju više slične svojim boljim susedima. 
-    \item Stoga, bitno nam je kako izgleda sama struktura populacije pa imamo više izučavanih topologija uticaja. Neke od njih su:
+    \item Stoga, bitno nam je kako izgleda sama struktura populacije pa imamo više izučavanih \alert{topologija uticaja}. Neke od njih su:
     \begin{itemize}
         \item Zvezda
         \item Prsten
@@ -243,6 +234,34 @@ Modeli brzina se razlikuju u komponentama koje su uključene u jednačinu brzine
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Literatura}
+
+\begin{thebibliography}{10}
+\bibitem{poli}
+\alert{Poli, Riccardo and Kennedy, James and Blackwell, Tim}
+\newblock  {Particle Swarm Optimization}
+
+\bibitem{erceg}
+\alert{Erceg, Bojan and Zeljkovic, Cedomir}
+\newblock {Implementacija BPSO algoritma za optimalnu rekonfiguraciju distributivne mreže}
+
+\bibitem{eberhart}
+\alert{Eberhart, Russell C and Shi, Yuhui and Kennedy, James}
+\newblock {Swarm Intelligence}
+
+\bibitem{wang}
+\alert{Wang, Dongshu and Tan, Dapei and Liu, Lei}
+\newblock {Particle swarm optimization algorithm: an overview}
+
+\bibitem{intro}
+\alert{Engelbrecht, Andries P}
+\newblock{Computational intelligence: an introduction}
+
+
+\end{thebibliography}
+
+\end{frame}
 
 \end{document} 
 
